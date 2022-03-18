@@ -8,7 +8,7 @@ import {
 } from '@watheia/base-ui';
 import { HeroSectionModel, ImageBlockModel, VideoBlockModel } from '@watheia/model';
 import classNames from 'clsx';
-import { contentMapper, renderElement } from '../..';
+import { contentMapper, renderBlock } from '../../../factory';
 // import { Action, Badge } from '../../atoms';
 
 type HeroMedia = ImageBlockModel | VideoBlockModel;
@@ -65,14 +65,14 @@ export default function HeroSection(props: HeroSectionModel) {
 }
 
 function heroMedia(media: HeroMedia) {
-  return renderElement(media, { 'data-sb-field-path': '.media' });
+  return renderBlock(media, { 'data-sb-field-path': '.media' });
 }
 
 function heroBody(props: HeroSectionModel) {
   const styles = props.styles || {};
   return (
     <div>
-      {props.badge && renderElement(props.badge, { 'data-sb-field-path': '.badge' })}
+      {props.badge && renderBlock(props.badge, { 'data-sb-field-path': '.badge' })}
       {props.title && (
         <Heading component="h2" data-sb-field-path=".title">
           {props.title}

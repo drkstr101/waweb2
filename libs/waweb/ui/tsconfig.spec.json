@@ -6,7 +6,9 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    "composite": true,
+    "declaration": true
   },
   "include": [
     "**/*.test.ts",

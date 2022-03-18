@@ -7,7 +7,7 @@ import { Link, mapMaxWidthStyles, mapMinHeightStyles } from '@watheia/base-ui';
 import { PostFeedSectionModel, PostLayoutModel } from '@watheia/model';
 import classNames from 'clsx';
 import dayjs from 'dayjs';
-import { renderElement } from '../..';
+import { renderBlock } from '../../../factory';
 import ImageBlock from '../../molecules/ImageBlock';
 import ArrowRightIcon from '../../svgs/arrow-right';
 
@@ -92,7 +92,7 @@ function postFeedActions(props: PostFeedSectionModel) {
         data-sb-field-path=".actions"
       >
         {props.actions.map((action, index) =>
-          renderElement(action, {
+          renderBlock(action, {
             key: index,
             className: 'mb-3 mx-2 lg:whitespace-nowrap',
             'data-sb-field-path': `.${index}`

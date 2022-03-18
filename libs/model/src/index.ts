@@ -1,5 +1,3 @@
-
-
 export type LayoutType = 'PageLayout' | 'PostLayout' | 'PostFeedLayout';
 // | 'PostFeedCategoryLayout';
 
@@ -83,6 +81,13 @@ export interface ActionModel extends ContentModel {
   readonly icon: string;
   readonly iconPosition: string;
   readonly style: string;
+}
+
+export interface LabeledNavModel extends ContentModel {
+  readonly label?: string;
+  readonly text: string;
+  readonly to: string;
+  readonly variant?: 'primary' | 'secondary' | 'neutral' | 'accent';
 }
 
 // export interface CheckboxFormControlModel extends ContentModel {

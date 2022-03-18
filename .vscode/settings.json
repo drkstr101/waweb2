@@ -24,5 +24,14 @@
     "editor.formatOnSave": false
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["clsx", "daisyui", "depgraph", "preact", "watheia", "waweb"]
+  "cSpell.words": [
+    "clsx",
+    "daisyui",
+    "depgraph",
+    "heroicons",
+    "preact",
+    "watheia",
+    "waweb"
+  ],
+  "svg.preview.background": "white"
 }

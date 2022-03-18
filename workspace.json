@@ -3,9 +3,9 @@
   "projects": {
     "api-stackbit": "libs/api/stackbit",
     "base-ui": "libs/base-ui",
-    "model": "libs/model",
     "home": "apps/home",
     "home-e2e": "apps/home-e2e",
+    "model": "libs/model",
     "utils": "libs/utils",
     "waweb-app": "libs/waweb/app",
     "waweb-auth": "libs/waweb/auth",

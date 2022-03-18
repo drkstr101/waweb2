@@ -1,6 +1,6 @@
 type: object
-name: NavLink
-label: NavLink
+name: LabeledNav
+label: LabeledNav
 labelField: text
 fieldGroups:
   - name: styles
