@@ -3,10 +3,10 @@ const withNx = require('@nrwl/next/plugins/with-nx');
 const withPreact = require('next-plugin-preact');
 const withPWA = require('next-pwa');
 const transpiler = require('next-transpile-modules');
-const sourcebit = require('sourcebit');
+// const sourcebit = require('sourcebit');
 
-const sourcebitConfig = require('../../sourcebit.js');
-sourcebit.fetch(sourcebitConfig);
+// const sourcebitConfig = require('../../sourcebit.js');
+// sourcebit.fetch(sourcebitConfig);
 
 const withBundleAnalyzer = analyzer({
   enabled: process.env['ANALYZE'] === 'true'
