@@ -1,0 +1,25 @@
+name: PageLayout
+label: Page
+layout: PageLayout
+thumbnail: https://assets.stackbit.com/components/models/thumbnails/default.png
+fields:
+  - name: title
+    type: string
+    label: Title
+    default: This is a new page
+    required: true
+  - name: content
+    type: markdown
+    label: Content
+    default: null
+  - name: seo
+    type: model
+    label: Seo configuration
+    models: [Seo]
+  - name: sections
+    type: list
+    label: Sections
+    items:
+      type: model
+      groups:
+        - sectionComponent

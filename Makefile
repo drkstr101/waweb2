@@ -26,13 +26,12 @@ analyze:
 setup: install
 # $(MAKE) setup-utils
 
-# setup-utils:
-# 	nx run-many --projects=api-stackbit,next-utils --target build
-# 	rm -rf node_modules/@watheia
-# 	mkdir node_modules/@watheia
-# 	cp -r dist/libs/next/utils node_modules/@watheia/next.utils
-# 	cp -r dist/libs/api/stackbit node_modules/@watheia/api.stackbit
-# 	echo '{}' > .sourcebit-nextjs-cache.json
+setup-utils:
+	nx build api-stackbit
+	rm -rf node_modules/@watheia
+	mkdir node_modules/@watheia
+	cp -r dist/libs/api/stackbit node_modules/@watheia/api.stackbit
+	echo '{}' > .sourcebit-nextjs-cache.json
 
 install:
 	yarn install
@@ -46,9 +45,9 @@ lint:
 test:
 	nx run-many --all --target test
 
-build: build-home
+build: build-home setup-utils
 
-build-home:
+build-home: setup-utils
 	WA_HOME_URL=$(WA_HOME_URL) \
 		WA_EXPO_URL=$(WA_EXPO_URL) \
 		nx build home --prod --verbose
@@ -59,7 +58,7 @@ build-home:
 			nx build expo --prod --verbose
 
 # Run all in parallel
-start:
+start: setup-utils
 	WA_HOME_URL=$(WA_HOME_URL) \
 		nx run-many --all --target serve --parallel
 

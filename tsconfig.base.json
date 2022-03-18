@@ -25,9 +25,6 @@
         "libs/waweb/app/src/index.ts"
       ],
       "@watheia/utils": [
-        "libs/waweb/utils/src/index.ts"
-      ],
-      "@watheia/utils": [
         "libs/utils/src/index.ts"
       ],
       "@watheia/waweb.assets.images/*": [
@@ -39,11 +36,11 @@
       "@watheia/waweb.auth": [
         "libs/waweb/auth/src/index.ts"
       ],
-      "@watheia/waweb.base-ui": [
+      "@watheia/base-ui": [
         "libs/base-ui/src/index.ts"
       ],
-      "@watheia/waweb.components": [
-        "libs/components/src/index.tsx"
+      "@watheia/waweb.ui": [
+        "libs/waweb/ui/src/index.tsx"
       ],
       "@watheia/waweb.icons": [
         "libs/icons/src/index.ts"
@@ -51,7 +48,7 @@
       "@watheia/waweb.message": [
         "libs/waweb/message/src/index.ts"
       ],
-      "@watheia/waweb.model": [
+      "@watheia/model": [
         "libs/model/src/index.ts"
       ]
     }
