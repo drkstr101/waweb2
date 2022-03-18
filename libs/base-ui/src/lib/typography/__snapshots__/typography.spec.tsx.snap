@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`watheia.waweb/base-ui.typography Body should render successfully 1`] = `
+<div>
+  <p
+    class="spectrum-Typography spectrum-Body spectrum-Body--sizeM"
+  >
+    Hello, World!
+  </p>
+</div>
+`;
+
+exports[`watheia.waweb/base-ui.typography Heading should render successfully 1`] = `
+<div>
+  <h1
+    class="spectrum-Heading spectrum-Heading--heavy spectrum-Heading--serif spectrum-Heading--sizeM spectrum-Typography"
+  >
+    Hello, World!
+  </h1>
+</div>
+`;
+
+exports[`watheia.waweb/base-ui.typography Heading should render successfully 2`] = `
+<div>
+  <pre
+    class="spectrum-Typography spectrum-Code"
+  >
+    Hello, World!
+  </pre>
+</div>
+`;
+
+exports[`watheia.waweb/base-ui.typography Heading should render successfully 3`] = `
+<div>
+  <p
+    class="spectrum-Typography spectrum-Detail"
+  >
+    Hello, World!
+  </p>
+</div>
+`;
