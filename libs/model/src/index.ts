@@ -57,6 +57,7 @@ export interface ContentModel extends Model {
 export interface PageModel extends Model {
   readonly layout: LayoutType;
   readonly title: string;
+  readonly subtitle?: string;
   readonly seo?: SeoModel;
   readonly sections?: SectionModel[];
   readonly markdown_content?: string;

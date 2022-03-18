@@ -1,4 +1,4 @@
-const slugify = (text: string) => {
+export const slugify = (text: string) => {
   return text
     .toString()
     .toLowerCase()
@@ -8,5 +8,3 @@ const slugify = (text: string) => {
     .replace(/^-+/, '') // Trim - from start of text
     .replace(/-+$/, ''); // Trim - from end of text
 };
-
-export default slugify;

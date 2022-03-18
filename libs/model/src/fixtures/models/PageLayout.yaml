@@ -8,6 +8,10 @@ fields:
     label: Title
     default: This is a new page
     required: true
+  - name: subtitle
+    type: string
+    label: Title
+    default: This is a long winded description of the page in which you are about to see
   - name: content
     type: markdown
     label: Content
