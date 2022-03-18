@@ -1,4 +1,4 @@
-import styles from './index.module.css';
+// import styles from './index.module.css';
 
 export function Index() {
   /*
@@ -7,7 +7,7 @@ export function Index() {
    * Note: The corresponding styles are in the ./index.css file.
    */
   return (
-    <div className={styles.page}>
+    <div>
       <div className="wrapper">
         <div className="container">
           <div id="welcome">
