@@ -2,7 +2,7 @@ import { mapStylesToClassNames as mapStyles } from '@watheia/api.stackbit';
 import { Link, mapMaxWidthStyles } from '@watheia/base-ui';
 import { PostFeedLayoutModel } from '@watheia/model';
 import classNames from 'clsx';
-import { renderElement } from '../..';
+import { renderBlock } from '../../../factory';
 import BaseLayout from '../BaseLayout';
 import { BaseLayoutProps } from '../BaseLayout/BaseLayoutProps';
 
@@ -47,7 +47,7 @@ export default function PostFeedLayout(props: BaseLayoutProps<PostFeedLayoutMode
         )}
         {renderSections(topSections, 'topSections')}
         {postFeed &&
-          renderElement(postFeed, {
+          renderBlock(postFeed, {
             posts: items,
             pageLinks: pageLinks,
             'data-sb-field-path': 'postFeed'
@@ -66,7 +66,7 @@ function renderSections(sections: any[], fieldName: string) {
     <div data-sb-field-path={fieldName}>
       {sections.map((section, index) => {
         const props = { 'data-sb-field-path': `${fieldName}.${index}` };
-        return renderElement(section, props);
+        return renderBlock(section, props);
       })}
     </div>
   );

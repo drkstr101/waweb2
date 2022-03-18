@@ -1,5 +1,5 @@
 import { Markdown } from '@watheia/base-ui';
-import { contentMapper } from '../..';
+import { contentMapper } from '../../../factory';
 import BaseLayout, { BaseLayoutProps } from '../BaseLayout';
 
 export default function PageLayout(props: BaseLayoutProps) {

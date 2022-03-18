@@ -3,7 +3,7 @@ import { Link } from '@watheia/base-ui';
 import { CategoryModel, PersonModel, PostLayoutModel } from '@watheia/model';
 import dayjs from 'dayjs';
 import Markdown from 'markdown-to-jsx';
-import { contentMapper } from '../..';
+import { contentMapper } from '../../../factory';
 import { BaseLayoutProps } from '../BaseLayout/BaseLayoutProps';
 
 export default function PostLayout(props: BaseLayoutProps<PostLayoutModel>) {
