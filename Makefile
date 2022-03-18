@@ -50,7 +50,7 @@ build: build-home setup-utils
 build-home: setup-utils
 	WA_HOME_URL=$(WA_HOME_URL) \
 		WA_EXPO_URL=$(WA_EXPO_URL) \
-		nx build home --prod --verbose
+		nx build home --prod --verbose --skip-nx-cache
 
 # build-expo: setup-utils
 #		WA_HOME_URL=$(WA_HOME_URL) \
