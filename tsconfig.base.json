@@ -10,24 +10,54 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@watheia/api.stackbit": ["libs/api/stackbit/src/index.ts"],
-      "@watheia/next.app": ["libs/next/app/src/index.ts"],
-      "@watheia/next.utils": ["libs/next/utils/src/index.ts"],
-      "@watheia/waweb.assets.images/*": ["libs/assets/src/images/*"],
-      "@watheia/waweb.assets.styles/*": ["libs/assets/src/styles/*"],
-      "@watheia/waweb.auth": ["libs/waweb/auth/src/index.ts"],
-      "@watheia/waweb.base-ui": ["libs/base-ui/src/index.ts"],
-      "@watheia/waweb.components": ["libs/components/src/index.tsx"],
-      "@watheia/waweb.icons": ["libs/icons/src/index.ts"],
-      "@watheia/waweb.message": ["libs/waweb/message/src/index.ts"],
-      "@watheia/waweb.model": ["libs/model/src/index.ts"],
-      "@watheia/utils": ["libs/utils/src/index.ts"]
+      "@watheia/api.stackbit": [
+        "libs/api/stackbit/src/index.ts"
+      ],
+      "@watheia/waweb.app": [
+        "libs/waweb/app/src/index.ts"
+      ],
+      "@watheia/utils": [
+        "libs/waweb/utils/src/index.ts"
+      ],
+      "@watheia/utils": [
+        "libs/utils/src/index.ts"
+      ],
+      "@watheia/waweb.assets.images/*": [
+        "libs/assets/src/images/*"
+      ],
+      "@watheia/waweb.assets.styles/*": [
+        "libs/assets/src/styles/*"
+      ],
+      "@watheia/waweb.auth": [
+        "libs/waweb/auth/src/index.ts"
+      ],
+      "@watheia/waweb.base-ui": [
+        "libs/base-ui/src/index.ts"
+      ],
+      "@watheia/waweb.components": [
+        "libs/components/src/index.tsx"
+      ],
+      "@watheia/waweb.icons": [
+        "libs/icons/src/index.ts"
+      ],
+      "@watheia/waweb.message": [
+        "libs/waweb/message/src/index.ts"
+      ],
+      "@watheia/waweb.model": [
+        "libs/model/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

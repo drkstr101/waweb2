@@ -2,8 +2,11 @@
   "version": 2,
   "projects": {
     "base-ui": "libs/base-ui",
-    "utils": "libs/utils",
     "home": "apps/home",
-    "home-e2e": "apps/home-e2e"
+    "home-e2e": "apps/home-e2e",
+    "utils": "libs/utils",
+    "waweb-app": "libs/waweb/app",
+    "waweb-auth": "libs/waweb/auth",
+    "waweb-message": "libs/waweb/message"
   }
 }

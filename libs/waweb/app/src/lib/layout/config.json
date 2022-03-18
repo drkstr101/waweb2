@@ -1,0 +1,25 @@
+{
+  "baseUrl": "https://watheia-gatekeeper.vercel.app",
+  "brandName": "Watheia",
+  "legalName": "Watheia Labs, LLC",
+  "metaDescription": "Watheia Labs, LLC is a modern software development and digital design agency located in Washington state",
+  "repo": "hhttps://github.com/drkstr101/wa/tree/main/web",
+  "siteDescription": "A tech demo by Watheia Labs.",
+  "siteName": "Watheia Realtime Expo",
+  "twitterCard": "https://www.datocms-assets.com/64528/1646691502-wa-card-4x.png",
+  "legalUrl": "/terms-and-conditions",
+  "navigation": [
+    {
+      "name": "Blog",
+      "route": "/blog"
+    },
+    {
+      "name": "Expo",
+      "route": "/expo"
+    },
+    {
+      "name": "Contact",
+      "route": "/contact"
+    }
+  ]
+}
