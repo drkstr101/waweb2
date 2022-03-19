@@ -83,6 +83,7 @@ const nextConfig = {
     domains: [
       'watheia.io',
       'www.datocms-assets.com',
+      'images.unsplash.com',
       'localhost' // For Strapi
     ],
     imageSizes: [24, 64, 300]

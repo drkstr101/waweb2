@@ -1,5 +1,15 @@
-import { PageModel } from '@watheia/model';
+import {
+  FeaturedPostsSectionModel,
+  PageModel,
+  PaginatedPersonModel,
+  PostFeedCategoryLayoutModel,
+  PostFeedLayoutModel,
+  PostLayoutModel,
+  RecentPostsSection
+} from '@watheia/model';
 import { getAllAuthorPostsSorted } from './get-all-author-posts-sorted';
+import { getAllCategoryPostsSorted } from './get-all-category-posts-sorted';
+import { getAllPostsSorted } from './get-all-posts-sorted';
 import { getPagedItemsForPage } from './get-paged-items-for-page';
 import { getRootPagePath } from './get-root-page-path';
 import { mapDeepAsync } from './map-deep-async';
@@ -11,9 +21,9 @@ export function resolveStaticProps(
 ) {
   // get root path of paged path: /blog/page/2 => /blog
   const rootUrlPath = getRootPagePath(urlPath);
-  const foundPage = data.pages.find((page) => page.__metadata.urlPath === rootUrlPath);
-  if (!foundPage) throw new Error(`Page not found for urlPath=${urlPath}`);
-  const { __metadata, ...rest } = foundPage;
+  const page = data.pages.find((page) => page.__metadata.urlPath === rootUrlPath);
+  if (!page) throw new Error(`Page could not be located for rootUrlPath=${rootUrlPath}`);
+  const { __metadata, ...rest } = page;
   const props = {
     page: {
       __metadata: {
@@ -40,10 +50,33 @@ export function resolveStaticProps(
 }
 
 const StaticPropsResolvers = {
-  ArticleLayout: (props, data, debugContext) => {
-    return resolveReferences(props, ['author'], data.objects, debugContext);
+  PostLayout: (props: PostLayoutModel, data, debugContext) => {
+    return resolveReferences(props, ['author', 'category'], data.objects, debugContext);
   },
-  Person: (props, data) => {
+  PostFeedLayout: (props: PostFeedLayoutModel, data) => {
+    const numOfPostsPerPage = props.numOfPostsPerPage ?? 10;
+    const allPosts = getAllPostsSorted(data.objects);
+    const paginationData = getPagedItemsForPage(props, allPosts, numOfPostsPerPage);
+    const items = resolveReferences(paginationData.items, ['author', 'category'], data.objects);
+    return {
+      ...props,
+      ...paginationData,
+      items
+    };
+  },
+  PostFeedCategoryLayout: (props: PostFeedCategoryLayoutModel, data) => {
+    const categoryId = props.__metadata?.id;
+    const numOfPostsPerPage = props.numOfPostsPerPage ?? 10;
+    const allCategoryPosts = getAllCategoryPostsSorted(data.objects, categoryId);
+    const paginationData = getPagedItemsForPage(props, allCategoryPosts, numOfPostsPerPage);
+    const items = resolveReferences(paginationData.items, ['author', 'category'], data.objects);
+    return {
+      ...props,
+      ...paginationData,
+      items
+    };
+  },
+  Person: (props: PaginatedPersonModel, data) => {
     const authorId = props.__metadata?.id;
     const allAuthorPosts = getAllAuthorPostsSorted(data.objects, authorId);
     const paginationData = getPagedItemsForPage(props, allAuthorPosts, 10);
@@ -59,5 +92,46 @@ const StaticPropsResolvers = {
         variant: 'variant-d'
       }
     };
+  },
+  RecentPostsSection: (props: RecentPostsSection, data) => {
+    const allPosts = getAllPostsSorted(data.objects).slice(0, props.recentCount || 6);
+    const recentPosts = resolveReferences(allPosts, ['author', 'category'], data.objects);
+    return {
+      ...props,
+      posts: recentPosts
+    };
+  },
+  FeaturedPostsSection: (props: FeaturedPostsSectionModel, data, debugContext) => {
+    return resolveReferences(
+      props,
+      ['posts.author', 'posts.category'],
+      data.objects,
+      debugContext
+    );
   }
+  // FeaturedPeopleSection: (props: FeaturedP, data, debugContext) => {
+  //   return resolveReferences(props, ['people'], data.objects, debugContext);
+  // }
+  // FormBlock: async (props) => {
+  //   if (!props.destination) {
+  //     return props;
+  //   }
+  //   if (!process.env.STACKBIT_CONTACT_FORM_SECRET) {
+  //     console.error(
+  //       `No STACKBIT_CONTACT_FORM_SECRET provided. It will not work properly for production build.`
+  //     );
+  //     return props;
+  //   }
+  //   const secretKey = crypto
+  //     .createHash('sha256')
+  //     .update(process.env.STACKBIT_CONTACT_FORM_SECRET)
+  //     .digest();
+  //   const destination = await new SignJWT({ email: props.destination })
+  //     .setProtectedHeader({ alg: 'HS256' })
+  //     .sign(secretKey);
+  //   return {
+  //     ...props,
+  //     destination
+  //   };
+  // }
 };

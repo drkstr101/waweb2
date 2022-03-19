@@ -127,8 +127,6 @@ const Article = (post: ArticleProps) => (
       {post.featuredImage && (
         <Image
           className="h-48 w-full"
-          layout="fill"
-          objectFit="cover"
           src={post.featuredImage.media.src}
           width={post.featuredImage.media.width}
           height={post.featuredImage.media.height}
@@ -136,14 +134,14 @@ const Article = (post: ArticleProps) => (
         />
       )}
     </div>
-    <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+    <div className="flex-1 bg-neutral p-6 flex flex-col justify-between">
       <div className="flex-1">
         <p className="text-sm font-medium text-accent">
           <Link href={post.category.slug}>{post.category.name}</Link>
         </p>
         <Link href={post.slug} className="block mt-2">
-          <p className="text-xl font-semibold text-gray-900">{post.title}</p>
-          <p className="mt-3 text-base text-gray-500">{post.excerpt}</p>
+          <p className="text-xl font-semibold text-neutral-content">{post.title}</p>
+          <p className="mt-3 text-base text-neutral-content">{post.excerpt}</p>
         </Link>
       </div>
       <div className="mt-6 flex items-center">

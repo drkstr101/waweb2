@@ -42,7 +42,7 @@ format:
 lint:
 	nx run-many --all --target lint
 
-test:
+test: setup-utils
 	nx run-many --all --target test
 
 build: build-home setup-utils

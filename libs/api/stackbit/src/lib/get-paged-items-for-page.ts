@@ -1,11 +1,12 @@
-import { PageModel, PostLayoutModel } from '@watheia/model';
+import { PageModel, PaginationData, PostLayoutModel } from '@watheia/model';
 import { getRootPagePath } from './get-root-page-path';
+
 
 export function getPagedItemsForPage(
   page: PageModel,
   items: PostLayoutModel[],
   numOfItemsPerPage: number
-) {
+): PaginationData  {
   const pageUrlPath = page.__metadata?.urlPath ?? '#';
   const baseUrlPath = getRootPagePath(pageUrlPath);
   if (numOfItemsPerPage === 0) {

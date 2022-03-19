@@ -13,24 +13,32 @@ export type ContentType =
   | 'VideoBlock';
 
 export interface Metadata {
-  readonly id: string;
-  readonly source: string;
-  readonly sourceName?: string;
-  readonly sourcePath?: string;
-  readonly relSourcePath?: string;
-  readonly relProjectPath?: string;
-  readonly modelType: string;
-  readonly modelName: string;
-  readonly modelLabel: string;
-  readonly urlPath?: string;
-  readonly routeHandler?: string;
-  readonly pageCssClasses: string | string | Record<string, string>;
+  id: string;
+  source: string;
+  sourceName?: string;
+  sourcePath?: string;
+  relSourcePath?: string;
+  relProjectPath?: string;
+  modelType: string;
+  modelName: string;
+  modelLabel: string;
+  urlPath?: string;
+  routeHandler?: string;
+  pageCssClasses: string | string | Record<string, string>;
 }
 
 export interface MetaTag {
   readonly property: string;
   readonly content: string;
   readonly format?: string;
+}
+
+export interface PaginationData {
+  pageIndex: number;
+  baseUrlPath: string;
+  numOfPages: number;
+  numOfTotalItems: number;
+  items: PostLayoutModel[];
 }
 
 export interface Model {
@@ -283,6 +291,8 @@ export interface PersonModel extends Model {
   readonly avatar?: MediaModel;
 }
 
+export type PaginatedPersonModel = PaginatedPostFeed
+
 export interface CategoryModel extends Model {
   readonly name: string;
   readonly slug: string;
@@ -295,6 +305,10 @@ export interface PostFeedLayoutModel extends PageModel {
   readonly topSections: Array<SectionModel>;
   readonly bottomSections: Array<SectionModel>;
 }
+
+export type PaginatedPostFeed = PostFeedLayoutModel & PaginationData;
+
+export type PostFeedCategoryLayoutModel = PostFeedLayoutModel;
 
 export interface PostLayoutModel extends PageModel {
   readonly date: string;

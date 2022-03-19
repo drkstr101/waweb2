@@ -7,16 +7,24 @@
     {
       "name": "Launch Next.js app",
       "request": "launch",
-      "runtimeArgs": ["nx", "serve", "home"],
+      "runtimeArgs": [
+        "nx",
+        "serve",
+        "home"
+      ],
       "runtimeExecutable": "yarn",
-      "skipFiles": ["<node_internals>/**"],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "type": "node"
     },
     {
       "type": "node",
       "request": "attach",
       "name": "Attach to application",
-      "skipFiles": ["<node_internals>/**"],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "port": 9229
     }
   ]

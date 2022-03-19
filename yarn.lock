@@ -6823,6 +6823,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/chai@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "@types/chai@npm:4.3.0"
+  checksum: 3e393e094263db65df28a0123dc13f342937c1bab6cd173eae913d593c5b9a16b555713a08c34863a1fbf079aa7222b96197c70380a5c130549d6b2f6845a989
+  languageName: node
+  linkType: hard
+
 "@types/component-emitter@npm:^1.2.10":
   version: 1.2.11
   resolution: "@types/component-emitter@npm:1.2.11"
@@ -9262,7 +9269,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chai@npm:^4.2.0":
+"chai@npm:^4.2.0, chai@npm:^4.3.6":
   version: 4.3.6
   resolution: "chai@npm:4.3.6"
   dependencies:
@@ -22856,6 +22863,7 @@ __metadata:
     "@testing-library/preact-hooks": ^1.1.0
     "@testing-library/react": "npm:@testing-library/preact@^2.0.1"
     "@testing-library/react-hooks": "npm:@testing-library/preact-hooks@^1.1.0"
+    "@types/chai": ^4.3.0
     "@types/jest": 27.4.1
     "@types/js-yaml": ^4.0.5
     "@types/lodash": ^4.14.180
@@ -22870,6 +22878,7 @@ __metadata:
     axios: ^0.26.1
     babel-jest: 27.5.1
     babel-loader: ^8.2.3
+    chai: ^4.3.6
     clsx: ^1.1.1
     core-js: ^3.21.1
     cypress: ^9.5.2

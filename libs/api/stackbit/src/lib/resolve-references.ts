@@ -1,16 +1,18 @@
-import { Model, PostLayoutModel } from '@watheia/model';
+import { Model } from '@watheia/model';
 import { findObjectById } from './find-object-by-id';
 
+export type DebugContext = { keyPath: (string | number)[]; stack: any[] };
+
 export function resolveReferences(
-  object: string | PostLayoutModel[],
+  object: Model | Model[],
   fieldPaths: string[],
   objects: Model[],
-  debugContext = { keyPath: [], stack: [] }
+  debugContext: DebugContext = { keyPath: [], stack: [] }
 ) {
   const _resolveDeep = (
     value: any,
     fieldNames: (string | number)[],
-    debugContext: { keyPath: any; stack: any }
+    debugContext: DebugContext
   ): any => {
     if (typeof value === 'string') {
       const result = findObjectById(value, objects, debugContext);
