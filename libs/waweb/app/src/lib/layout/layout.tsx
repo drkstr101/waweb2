@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-import { BellIcon } from '@heroicons/react/outline';
 import { SkipNavContent } from '@reach/skip-nav';
-import { url } from '@watheia/utils';
-import { useAuth } from '@watheia/waweb.auth';
 import { MessageList, useMessage } from '@watheia/waweb.message';
 import cn from 'clsx';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { HtmlHTMLAttributes } from 'react';
 import config from './config.json';
 import Footer from './footer';
+import Header from './header';
 import styles from './layout.module.css';
-import Logo from './logo';
-import MobileMenu from './mobile-menu';
-import { NavZone } from './NavZone';
-import UserMenu from './user-menu';
 import ViewSource from './view-source';
 
 export interface LayoutProps extends HtmlHTMLAttributes<HTMLDivElement> {
@@ -47,55 +39,13 @@ export default function Layout({
   usePadding = false,
   useBackdrop = false
 }: LayoutProps) {
-  const router = useRouter();
-  const activeRoute = router?.asPath ?? '/';
   const { messages } = useMessage();
-  const { isLoggedIn } = useAuth();
 
   return (
     <>
       <ViewSource />
       <div className={cn(useBackdrop ? styles['backdrop'] : styles['layout'])}>
-        {!hideNav && (
-          <header className={cn(styles['header'])}>
-            <div className={styles['headerLogos']}>
-              <MobileMenu key={router?.asPath ?? '/'} />
-              <Link href={url()}>
-                {/* eslint-disable-next-line */}
-                <a className={styles['logo']}>
-                  <Logo />
-                </a>
-              </Link>
-            </div>
-            <div className={styles['tabs']}>
-              {config.navigation.map(({ name, route }: NavZone) => (
-                <Link key={name} href={url(route).href}>
-                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <a
-                    className={cn(styles['tab'], {
-                      [styles['tabActive']]: activeRoute.startsWith(route)
-                    })}
-                  >
-                    {name}
-                  </a>
-                </Link>
-              ))}
-            </div>
-            {isLoggedIn && (
-              <div className="flex items-center ml-4 mr-16 md:ml-6">
-                <button
-                  type="button"
-                  className="p-1 text-base-300 bg-base-content rounded-full hover:text-base-700 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="w-6 h-6" aria-hidden="true" />
-                </button>
-
-                <UserMenu />
-              </div>
-            )}
-          </header>
-        )}
+        {!hideNav && <Header navigation={config.navigation} />}
         <div className={styles['page']}>
           <MessageList messages={messages} />
           <div
