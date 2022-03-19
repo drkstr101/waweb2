@@ -18,7 +18,6 @@
 import { GlobeAltIcon, LightningBoltIcon, MailIcon, ScaleIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon, ExternalLinkIcon } from '@heroicons/react/solid';
 import { Image } from '@watheia/base-ui';
-import { url } from '@watheia/utils';
 import clsx from 'clsx';
 import Link from 'next/link';
 
@@ -333,7 +332,7 @@ export const CtaSection = () => (
         </p>
         <div className="mt-8">
           <div className="inline-flex rounded-md shadow">
-            <Link href={url('/contact')}>
+            <Link href="/contact">
               <a className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-base bg-base-content hover:bg-base-content-300">
                 Contact sales
                 <ExternalLinkIcon
