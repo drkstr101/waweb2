@@ -25,7 +25,6 @@ import {
 import { BellIcon } from '@heroicons/react/outline';
 import ShowMenu from '@spectrum-icons/workflow/ShowMenu';
 import { Link } from '@watheia/base-ui';
-import { url } from '@watheia/utils';
 import { useAuth } from '@watheia/waweb.auth';
 import cn from 'clsx';
 import { useRouter } from 'next/router';
@@ -49,23 +48,22 @@ export default function Layout({ className, ...props }: HeaderProps) {
     <header className={cn(styles['header'], className)}>
       <div className={styles['headerLogos']}>
         <div className={styles['mobile-nav-btn']}>
-          <MobileNav {...props} />
+          <MobileNav key={activeRoute} {...props} />
         </div>
-        <Link href={url().href} className={styles['logo']}>
+        <Link href="/" className={styles['logo']}>
           <Logo />
         </Link>
       </div>
       <div className={styles['tabs']}>
         {config.navigation.map(({ name, route }: NavZone) => (
-          <Link key={name} href={url(route).href}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a
-              className={cn(styles['tab'], {
-                [styles['tabActive']]: activeRoute.startsWith(route)
-              })}
-            >
-              {name}
-            </a>
+          <Link
+            key={name}
+            href={route}
+            className={cn(styles['tab'], {
+              [styles['tabActive']]: activeRoute.startsWith(route)
+            })}
+          >
+            {name}
           </Link>
         ))}
       </div>
@@ -94,25 +92,28 @@ const MobileNav = ({ navigation }: HeaderProps) => {
       <ActionButton aria-label="Navigator" UNSAFE_style={{ cursor: 'pointer' }}>
         <ShowMenu />
       </ActionButton>
-      <Dialog>
-        <Heading>Navigator</Heading>
-        <Divider />
-        <Content>
-          <nav className={styles['mobile-nav']}>
-            {navigation.map(({ name, route }) => (
-              <Link
-                key={name}
-                href={route}
-                className={cn(styles['mobile-nav-item'], {
-                  [styles['mobile-nav-active']]: activeRoute.startsWith(route)
-                })}
-              >
-                {name}
-              </Link>
-            ))}
-          </nav>
-        </Content>
-      </Dialog>
+      {(close) => (
+        <Dialog>
+          <Heading>Navigator</Heading>
+          <Divider />
+          <Content>
+            <nav className={styles['mobile-nav']}>
+              {navigation.map(({ name, route }) => (
+                <Link
+                  key={name}
+                  href={route}
+                  onClick={close}
+                  className={cn(styles['mobile-nav-item'], {
+                    [styles['mobile-nav-active']]: activeRoute.startsWith(route)
+                  })}
+                >
+                  {name}
+                </Link>
+              ))}
+            </nav>
+          </Content>
+        </Dialog>
+      )}
     </DialogTrigger>
   );
 };

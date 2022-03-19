@@ -1,4 +1,3 @@
-import { url } from '@watheia/utils';
 import clsx from 'clsx';
 import NextLink from 'next/link';
 import { HtmlHTMLAttributes } from 'react';
@@ -10,7 +9,7 @@ export interface LinkProps extends HtmlHTMLAttributes<HTMLAnchorElement> {
 
 export function Link({ children, className, href = '#', ...props }: LinkProps) {
   const isInternal = href.startsWith('/') || href.startsWith('#');
-  const uri = isInternal ? url(href).href : href;
+  // const uri = isInternal ? url(href).href : href;
 
   const NativeLink = (props: LinkProps) => (
     <a className={clsx('link link-hover hover:text-white', className)} {...props}>
@@ -20,13 +19,13 @@ export function Link({ children, className, href = '#', ...props }: LinkProps) {
 
   if (isInternal) {
     return (
-      <NextLink href={uri}>
+      <NextLink href={href} passHref>
         <NativeLink />
       </NextLink>
     );
   }
 
-  return <NativeLink href={uri} />;
+  return <NativeLink href={href} />;
 }
 
 export default Link;

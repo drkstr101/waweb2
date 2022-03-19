@@ -38,37 +38,52 @@ exports[`waweb.layout should render successfully 1`] = `
       <div
         class="headerLogos"
       >
-        <button
-          aria-label="Mobile Menu"
-          class="button"
-          type="button"
+        <div
+          class="mobile-nav-btn"
         >
-          <svg
-            class="icon"
-            fill="none"
-            height="24"
-            shapeRendering="geometricPrecision"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            width="24"
+          <button
+            aria-label="Navigator"
+            class="spectrum-ActionButton_e2d99e"
+            style="cursor: pointer;"
+            type="button"
           >
-            <path
-              d="M3 12h18"
-            />
-            <path
-              d="M3 6h18"
-            />
-            <path
-              d="M3 18h18"
-            />
-          </svg>
-        </button>
+            <svg
+              aria-hidden="true"
+              class="spectrum-Icon_368b34 spectrum-Icon--sizeS_368b34 spectrum-Icon_e2d99e"
+              focusable="false"
+              role="img"
+              viewBox="0 0 36 36"
+            >
+              <rect
+                height="4"
+                rx="1"
+                ry="1"
+                width="28"
+                x="4"
+                y="16"
+              />
+              <rect
+                height="4"
+                rx="1"
+                ry="1"
+                width="28"
+                x="4"
+                y="6"
+              />
+              <rect
+                height="4"
+                rx="1"
+                ry="1"
+                width="28"
+                x="4"
+                y="26"
+              />
+            </svg>
+          </button>
+        </div>
         <a
-          class="logo"
-          href="https://4200-drkstr101-waweb2-8y1fdlkb2cv.ws-us38xl.gitpod.io/"
+          class="link link-hover hover:text-white logo"
+          href="/"
         >
           <span
             style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -97,20 +112,20 @@ exports[`waweb.layout should render successfully 1`] = `
         class="tabs"
       >
         <a
-          class="tab"
-          href="https://4200-drkstr101-waweb2-8y1fdlkb2cv.ws-us38xl.gitpod.io/blog"
+          class="link link-hover hover:text-white tab"
+          href="/blog"
         >
           Blog
         </a>
         <a
-          class="tab"
-          href="https://4200-drkstr101-waweb2-8y1fdlkb2cv.ws-us38xl.gitpod.io/expo"
+          class="link link-hover hover:text-white tab"
+          href="/expo"
         >
           Expo
         </a>
         <a
-          class="tab"
-          href="https://4200-drkstr101-waweb2-8y1fdlkb2cv.ws-us38xl.gitpod.io/contact"
+          class="link link-hover hover:text-white tab"
+          href="/contact"
         >
           Contact
         </a>
