@@ -26,7 +26,11 @@ export default function Footer() {
     >
       <div className={styles['footer-legal']}>
         <div data-testid="waweb.layout/footer:copyright" className={styles['footer-copyright']}>
-          Copyright © {`${new Date().getFullYear()} `} Watheia Labs, LLC. All rights reserved.
+          Copyright © {`${new Date().getFullYear()} `}
+          <br />
+          Watheia Labs, LLC.
+          <br />
+          All rights reserved.
         </div>
         <div className={styles['footer-center-group']}>
           <p className={styles['footer-paragraph']}>

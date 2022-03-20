@@ -12,7 +12,10 @@ export function Link({ children, className, href = '#', ...props }: LinkProps) {
   // const uri = isInternal ? url(href).href : href;
 
   const NativeLink = (props: LinkProps) => (
-    <a className={clsx('link link-hover text-white hover:underline', className)} {...props}>
+    <a
+      className={clsx('link link-hover hover:text-white hover:underline', className)}
+      {...props}
+    >
       {children}
     </a>
   );
