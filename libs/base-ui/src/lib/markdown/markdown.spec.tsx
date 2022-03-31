@@ -1,10 +1,9 @@
 import { render } from '@testing-library/react';
-
 import Markdown from './markdown';
 
 describe('Markdown', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Markdown />);
+    const { baseElement } = render(<Markdown>Hello, World!</Markdown>);
     expect(baseElement).toBeTruthy();
   });
 });

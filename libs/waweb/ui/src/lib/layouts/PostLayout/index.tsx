@@ -142,7 +142,6 @@ const DotsPattern = () => (
   </svg>
 );
 
-// import { getPageUrlPath } from '@watheia/api.stackbit';
 // import { Link } from '@watheia/base-ui';
 // import { CategoryModel, PersonModel, PostLayoutModel } from '@watheia/model';
 // import dayjs from 'dayjs';

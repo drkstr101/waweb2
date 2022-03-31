@@ -1,7 +1,6 @@
 import { Model } from '@watheia/model';
+import { DebugContext } from '../types/DebugContext';
 import { findObjectById } from './find-object-by-id';
-
-export type DebugContext = { keyPath: (string | number)[]; stack: any[] };
 
 export function resolveReferences(
   object: Model | Model[],
@@ -9,11 +8,7 @@ export function resolveReferences(
   objects: Model[],
   debugContext: DebugContext = { keyPath: [], stack: [] }
 ) {
-  const _resolveDeep = (
-    value: any,
-    fieldNames: (string | number)[],
-    debugContext: DebugContext
-  ): any => {
+  const _resolveDeep = (value, fieldNames: (string | number)[], debugContext: DebugContext) => {
     if (typeof value === 'string') {
       const result = findObjectById(value, objects, debugContext);
       return _resolveDeep(result, fieldNames, debugContext);

@@ -98,14 +98,16 @@ const posts = [
 export default function PostFeedLayout(props: BaseLayoutProps<PostFeedLayoutModel>) {
   const { title, subtitle } = props.page;
   return (
-    <main className="relative pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+    <main className="relative pt-8 pb-20 px-4 sm:px-6 lg:pt-12 lg:pb-28 lg:px-8">
       <div className="relative max-w-7xl mx-auto">
-        <div className="text-center">
-          <h2 className="text-3xl tracking-tight font-extrabold text-base-content-300 sm:text-4xl">
+        <div className="text-left">
+          <h2 className="text-4xl tracking-tight font-extrabold text-base-content-300 sm:text-6xl">
             {title}
           </h2>
           {subtitle && (
-            <p className="mt-3 max-w-2xl mx-auto text-xl base-content sm:mt-4">{subtitle}</p>
+            <p className="mt-3 max-w-2xl mx-auto text-xl text-base-content sm:mt-4">
+              {subtitle}
+            </p>
           )}
         </div>
         <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
@@ -126,7 +128,7 @@ const Article = (post: ArticleProps) => (
     <div className="flex-shrink-0">
       {post.featuredImage && (
         <Image
-          className="h-48 w-full"
+          className="w-full"
           src={post.featuredImage.media.src}
           width={post.featuredImage.media.width}
           height={post.featuredImage.media.height}
@@ -134,14 +136,14 @@ const Article = (post: ArticleProps) => (
         />
       )}
     </div>
-    <div className="flex-1 bg-neutral p-6 flex flex-col justify-between">
+    <div className="flex-1 -mt-4 text-neutral-content bg-neutral p-6 flex flex-col justify-between">
       <div className="flex-1">
         <p className="text-sm font-medium text-accent">
           <Link href={post.category.slug}>{post.category.name}</Link>
         </p>
         <Link href={post.slug} className="block mt-2">
           <p className="text-xl font-semibold text-neutral-content">{post.title}</p>
-          <p className="mt-3 text-base text-neutral-content">{post.excerpt}</p>
+          <p className="mt-3 text-neutral-content">{post.excerpt}</p>
         </Link>
       </div>
       <div className="mt-6 flex items-center">
@@ -154,6 +156,7 @@ const Article = (post: ArticleProps) => (
                 src={post.author.avatar.src}
                 width={post.author.avatar.width}
                 height={post.author.avatar.height}
+                layout="intrinsic"
               />
             )}
           </Link>

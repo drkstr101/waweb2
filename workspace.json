@@ -9,6 +9,7 @@
     "utils": "libs/utils",
     "waweb-app": "libs/waweb/app",
     "waweb-auth": "libs/waweb/auth",
+    "waweb-config": "libs/waweb/config",
     "waweb-message": "libs/waweb/message",
     "waweb-ui": "libs/waweb/ui"
   }

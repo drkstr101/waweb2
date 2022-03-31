@@ -1,6 +1,6 @@
-import { getDataAttrs, mapStylesToClassNames as mapStyles } from '@watheia/api.stackbit';
 import { mapMaxWidthStyles } from '@watheia/base-ui';
 import { TextBlockModel } from '@watheia/model';
+import { getDataAttrs, mapStylesToClassNames as mapStyles } from '@watheia/utils';
 import classNames from 'clsx';
 import Markdown from 'markdown-to-jsx';
 
