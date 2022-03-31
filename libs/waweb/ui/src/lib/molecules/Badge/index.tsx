@@ -1,5 +1,5 @@
-import { mapStylesToClassNames as mapStyles } from '@watheia/api.stackbit';
 import { BadgeModel } from '@watheia/model';
+import { mapStylesToClassNames as mapStyles } from '@watheia/utils';
 import classNames from 'clsx';
 
 export default function Badge(props: BadgeModel) {

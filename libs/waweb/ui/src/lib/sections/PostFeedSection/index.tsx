@@ -1,10 +1,10 @@
+import { Link, mapMaxWidthStyles, mapMinHeightStyles } from '@watheia/base-ui';
+import { PostFeedSectionModel, PostLayoutModel } from '@watheia/model';
 import {
   getDataAttrs,
   getPageUrlPath,
   mapStylesToClassNames as mapStyles
-} from '@watheia/api.stackbit';
-import { Link, mapMaxWidthStyles, mapMinHeightStyles } from '@watheia/base-ui';
-import { PostFeedSectionModel, PostLayoutModel } from '@watheia/model';
+} from '@watheia/utils';
 import classNames from 'clsx';
 import dayjs from 'dayjs';
 import { renderBlock } from '../../../factory';

@@ -1,4 +1,5 @@
 import {
+  ConfigModel,
   FeaturedPostsSectionModel,
   PageModel,
   PaginatedPersonModel,
@@ -7,6 +8,8 @@ import {
   PostLayoutModel,
   RecentPostsSection
 } from '@watheia/model';
+import { DebugContext } from '../types/DebugContext';
+import { ModelData } from '../types/ModelData';
 import { getAllAuthorPostsSorted } from './get-all-author-posts-sorted';
 import { getAllCategoryPostsSorted } from './get-all-category-posts-sorted';
 import { getAllPostsSorted } from './get-all-posts-sorted';
@@ -15,56 +18,35 @@ import { getRootPagePath } from './get-root-page-path';
 import { mapDeepAsync } from './map-deep-async';
 import { resolveReferences } from './resolve-references';
 
-export function resolveStaticProps(
-  urlPath: string,
-  data: { pages: PageModel[]; props: Record<string, any> }
-) {
-  // get root path of paged path: /blog/page/2 => /blog
-  const rootUrlPath = getRootPagePath(urlPath);
-  const page = data.pages.find((page) => page.__metadata.urlPath === rootUrlPath);
-  if (!page) throw new Error(`Page could not be located for rootUrlPath=${rootUrlPath}`);
-  const { __metadata, ...rest } = page;
-  const props = {
-    page: {
-      __metadata: {
-        ...__metadata,
-        // override urlPath in metadata with paged path: /blog => /blog/page/2
-        urlPath
-      },
-      ...rest
-    },
-    ...data.props
-  };
-  return mapDeepAsync(
-    props,
-    async (value, keyPath, stack) => {
-      const objectType = value?.type || value?.layout;
-      if (objectType && StaticPropsResolvers[objectType]) {
-        const resolver = StaticPropsResolvers[objectType];
-        return resolver(value, data, { keyPath, stack });
-      }
-      return value;
-    },
-    { postOrder: true }
-  );
-}
+const __DEBUG__ = false;
 
-const StaticPropsResolvers = {
-  PostLayout: (props: PostLayoutModel, data, debugContext) => {
+const mapperOptions = { postOrder: true };
+
+const staticPropsResolvers = {
+  PostLayout: (props: PostLayoutModel, data: ModelData, debugContext?: DebugContext) => {
     return resolveReferences(props, ['author', 'category'], data.objects, debugContext);
   },
-  PostFeedLayout: (props: PostFeedLayoutModel, data) => {
+  PostFeedLayout: (
+    props: PostFeedLayoutModel,
+    data: ModelData,
+    debugContext?: DebugContext
+  ) => {
     const numOfPostsPerPage = props.numOfPostsPerPage ?? 10;
     const allPosts = getAllPostsSorted(data.objects);
     const paginationData = getPagedItemsForPage(props, allPosts, numOfPostsPerPage);
-    const items = resolveReferences(paginationData.items, ['author', 'category'], data.objects);
+    const items = resolveReferences(
+      paginationData.items,
+      ['author', 'category'],
+      data.objects,
+      debugContext
+    );
     return {
       ...props,
       ...paginationData,
       items
     };
   },
-  PostFeedCategoryLayout: (props: PostFeedCategoryLayoutModel, data) => {
+  PostFeedCategoryLayout: (props: PostFeedCategoryLayoutModel, data: ModelData) => {
     const categoryId = props.__metadata?.id;
     const numOfPostsPerPage = props.numOfPostsPerPage ?? 10;
     const allCategoryPosts = getAllCategoryPostsSorted(data.objects, categoryId);
@@ -76,7 +58,7 @@ const StaticPropsResolvers = {
       items
     };
   },
-  Person: (props: PaginatedPersonModel, data) => {
+  Person: (props: PaginatedPersonModel, data: ModelData) => {
     const authorId = props.__metadata?.id;
     const allAuthorPosts = getAllAuthorPostsSorted(data.objects, authorId);
     const paginationData = getPagedItemsForPage(props, allAuthorPosts, 10);
@@ -93,15 +75,28 @@ const StaticPropsResolvers = {
       }
     };
   },
-  RecentPostsSection: (props: RecentPostsSection, data) => {
+  RecentPostsSection: (
+    props: RecentPostsSection,
+    data: ModelData,
+    debugContext?: DebugContext
+  ) => {
     const allPosts = getAllPostsSorted(data.objects).slice(0, props.recentCount || 6);
-    const recentPosts = resolveReferences(allPosts, ['author', 'category'], data.objects);
+    const recentPosts = resolveReferences(
+      allPosts,
+      ['author', 'category'],
+      data.objects,
+      debugContext
+    );
     return {
       ...props,
       posts: recentPosts
     };
   },
-  FeaturedPostsSection: (props: FeaturedPostsSectionModel, data, debugContext) => {
+  FeaturedPostsSection: (
+    props: FeaturedPostsSectionModel,
+    data: ModelData,
+    debugContext?: DebugContext
+  ) => {
     return resolveReferences(
       props,
       ['posts.author', 'posts.category'],
@@ -109,7 +104,7 @@ const StaticPropsResolvers = {
       debugContext
     );
   }
-  // FeaturedPeopleSection: (props: FeaturedP, data, debugContext) => {
+  // FeaturedPeopleSection: (props: FeaturedPeopleSectionModel, data: ModelData, debugContext?: DebugContext) => {
   //   return resolveReferences(props, ['people'], data.objects, debugContext);
   // }
   // FormBlock: async (props) => {
@@ -135,3 +130,41 @@ const StaticPropsResolvers = {
   //   };
   // }
 };
+
+function objectMapper(data: ModelData) {
+  return async (value: { type: any; layout: any }, keyPath: any, stack: any) => {
+    const objectType = value?.type || value?.layout;
+    if (objectType && staticPropsResolvers[objectType]) {
+      const resolver = staticPropsResolvers[objectType];
+      return resolver(value, data, { keyPath, stack });
+    }
+    return value;
+  };
+}
+
+export async function resolveStaticProps(
+  urlPath: string,
+  data: ModelData
+): Promise<{ site: ConfigModel; page: PageModel }> {
+  __DEBUG__ && console.info(`Resolving props for (${urlPath})...`);
+  // get root path of paged path: /blog/page/2 => /blog
+  const rootUrlPath = getRootPagePath(urlPath);
+  const page = data.pages.find((page) => page.__metadata.urlPath === rootUrlPath);
+  if (!page) throw new Error(`Page could not be located for rootUrlPath=${rootUrlPath}`);
+  const { __metadata, ...rest } = page;
+  const props = {
+    page: {
+      __metadata: {
+        ...__metadata,
+        // override urlPath in metadata with paged path: /blog => /blog/page/2
+        urlPath
+      },
+      ...rest
+    },
+    ...data.props
+  };
+  const result = await mapDeepAsync(props, objectMapper(data), mapperOptions);
+  __DEBUG__ && console.info(result);
+
+  return result;
+}

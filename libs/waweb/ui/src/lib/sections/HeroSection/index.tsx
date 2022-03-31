@@ -1,4 +1,3 @@
-import { getDataAttrs, mapStylesToClassNames as mapStyles } from '@watheia/api.stackbit';
 import {
   Heading,
   mapFlexDirectionStyles,
@@ -7,9 +6,9 @@ import {
   Markdown
 } from '@watheia/base-ui';
 import { HeroSectionModel, ImageBlockModel, VideoBlockModel } from '@watheia/model';
+import { getDataAttrs, mapStylesToClassNames as mapStyles } from '@watheia/utils';
 import classNames from 'clsx';
 import { contentMapper, renderBlock } from '../../../factory';
-// import { Action, Badge } from '../../atoms';
 
 type HeroMedia = ImageBlockModel | VideoBlockModel;
 

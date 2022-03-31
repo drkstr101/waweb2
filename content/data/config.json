@@ -1,5 +1,7 @@
 {
   "type": "Config",
+  "brandName": "Watheia",
+  "repo": "hhttps://github.com/drkstr101/waweb2",
   "header": {
     "primaryLinks": [
       {

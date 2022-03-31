@@ -1,7 +1,17 @@
-import { RequireAtLeastOne } from '@watheia/utils';
 import clsx from 'clsx';
 import MarkdownToJSX from 'markdown-to-jsx';
 import { createElement, HtmlHTMLAttributes } from 'react';
+
+/**
+ * RequireAtLeastOne<{ ... }> <- only requires at least one key
+ */
+export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
+  T,
+  Exclude<keyof T, Keys>
+> &
+  {
+    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>;
+  }[Keys];
 
 export type CreateElement = typeof createElement;
 

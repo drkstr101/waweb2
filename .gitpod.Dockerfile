@@ -10,6 +10,12 @@ RUN sudo apt-get install graphviz zsh zip unzip -y
 # Install ohmyzsh
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# Install bit cli
+ENV PATH=$HOME/bin:$PATH
+RUN export PATH=$HOME/bin:$PATH && \
+  npm i -g @teambit/bvm && \
+  bvm install
+
 # Get the public URL from gitpod
 RUN echo 'export WA_HOME_URL="$(/usr/bin/gp url 4200)"' >> ~/.bashrc && \
   echo 'export WA_HOME_URL="$(/usr/bin/gp url 4200)"' >> ~/.zshrc

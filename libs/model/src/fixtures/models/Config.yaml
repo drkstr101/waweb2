@@ -7,6 +7,14 @@ fieldGroups:
   - name: seo
     label: SEO
 fields:
+  - name: brandName
+    type: string
+    label: Brand Name
+    required: true
+  - name: repo
+    type: string
+    label: Repo
+    required: true
   - name: header
     type: model
     label: Header configuration

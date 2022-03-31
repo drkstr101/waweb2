@@ -1,3 +1,23 @@
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+
+/**
+ * Make all fields in a type optional
+ */
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+
+/**
+ * Transform all fields into a maybe
+ */
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+
 export type LayoutType = 'PageLayout' | 'PostLayout' | 'PostFeedLayout';
 // | 'PostFeedCategoryLayout';
 
@@ -107,9 +127,11 @@ export interface LabeledNavModel extends ContentModel {
 // }
 
 export interface ConfigModel extends Model {
-  readonly header?: HeaderModel;
-  readonly footer?: FooterModel;
-  readonly seo?: SeoModel;
+  readonly brandName: string;
+  readonly repo: string;
+  readonly header: Maybe<HeaderModel>;
+  readonly footer: Maybe<FooterModel>;
+  readonly seo: Maybe<SeoModel>;
 }
 
 // export interface ContactBlockModel extends Model {
@@ -215,7 +237,7 @@ export interface FooterModel extends ContentModel {
 
 export interface HeaderModel extends ContentModel {
   readonly logo?: MediaModel;
-  readonly primaryLinks: Array<LinkModel>;
+  readonly primaryLinks: LinkModel[];
 }
 
 export interface HeroSectionModel extends SectionModel {
@@ -291,7 +313,7 @@ export interface PersonModel extends Model {
   readonly avatar?: MediaModel;
 }
 
-export type PaginatedPersonModel = PaginatedPostFeed
+export type PaginatedPersonModel = PaginatedPostFeed;
 
 export interface CategoryModel extends Model {
   readonly name: string;
