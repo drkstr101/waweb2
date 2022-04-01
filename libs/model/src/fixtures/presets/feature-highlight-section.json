@@ -11,7 +11,7 @@
         "text": "Share WIP, comment on each other’s work, approve what’s ready to go, ship together",
         "actions": [
           {
-            "type": "Button",
+            "type": "Action",
             "label": "Sign Up",
             "url": "/",
             "style": "primary"
@@ -57,7 +57,7 @@
         "text": "Share WIP, comment on each other’s work, approve what’s ready to go, ship together",
         "actions": [
           {
-            "type": "Button",
+            "type": "Action",
             "label": "Sign Up",
             "url": "/",
             "style": "primary"

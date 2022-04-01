@@ -10,8 +10,8 @@ fields:
     required: true
   - name: subtitle
     type: string
-    label: Title
-    default: This is a long winded description of the page in which you are about to see
+    label: Deprecated, use PageHeading block
+    default: null
   - name: content
     type: markdown
     label: Content
