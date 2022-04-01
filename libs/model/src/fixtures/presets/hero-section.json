@@ -11,7 +11,7 @@
         "text": "One platform, one community, getting to the bottom line of everything employment.  Figure out your benefits, practice for interviews, get mentored, help peers, get helped in return.",
         "actions": [
           {
-            "type": "Button",
+            "type": "Action",
             "label": "Sign Up",
             "url": "/",
             "style": "primary"
@@ -57,7 +57,7 @@
         "text": "One platform, one community, getting to the bottom line of everything employment.  Figure out your benefits, practice for interviews, get mentored, help peers, get helped in return.",
         "actions": [
           {
-            "type": "Button",
+            "type": "Action",
             "label": "Sign Up",
             "url": "/",
             "style": "primary"
@@ -108,13 +108,13 @@
         "text": "One platform, one community, getting to the bottom line of everything employment.  Figure out your benefits, practice for interviews, get mentored, help peers, get helped in return.",
         "actions": [
           {
-            "type": "Button",
+            "type": "Action",
             "label": "Sign Up",
             "url": "/",
             "style": "primary"
           },
           {
-            "type": "Button",
+            "type": "Action",
             "label": "Learn More",
             "url": "/",
             "style": "secondary"

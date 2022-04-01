@@ -75,6 +75,31 @@ export interface SeoModel extends Model {
   readonly metaTags: Array<MetaTag>;
 }
 
+export interface MediaModel extends Model {
+  readonly alt?: string;
+  readonly src: string;
+  readonly width: number;
+  readonly height: number;
+}
+
+export interface CategoryModel extends Model {
+  readonly name: string;
+  readonly slug: string;
+  readonly description?: string;
+}
+
+export interface PageModel extends Model {
+  readonly layout: LayoutType;
+  readonly title: string;
+  /**
+   * @deprecated
+   */
+  readonly subtitle?: string;
+  readonly seo?: SeoModel;
+  readonly sections?: SectionModel[];
+  readonly markdown_content?: string;
+}
+
 export interface ContentModel extends Model {
   readonly elementId?: string;
   readonly styles: Record<string, any>;
@@ -82,21 +107,12 @@ export interface ContentModel extends Model {
   readonly className?: string;
 }
 
-export interface PageModel extends Model {
-  readonly layout: LayoutType;
-  readonly title: string;
-  readonly subtitle?: string;
-  readonly seo?: SeoModel;
-  readonly sections?: SectionModel[];
-  readonly markdown_content?: string;
-}
-
 export interface SectionModel extends ContentModel {
+  /**
+   * @deprecated
+   */
   readonly colors: string;
 }
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BlockModel extends ContentModel {}
 
 export interface BadgeModel extends ContentModel {
   readonly label: string;
@@ -119,12 +135,12 @@ export interface LabeledNavModel extends ContentModel {
   readonly variant?: 'primary' | 'secondary' | 'neutral' | 'accent';
 }
 
-// export interface CheckboxFormControlModel extends ContentModel {
-//   readonly name: string;
-//   readonly label?: string;
-//   readonly isRequired?: boolean;
-//   readonly width: string;
-// }
+export interface CheckboxFormControlModel extends ContentModel {
+  readonly name: string;
+  readonly label?: string;
+  readonly isRequired?: boolean;
+  readonly width: string;
+}
 
 export interface ConfigModel extends Model {
   readonly brandName: string;
@@ -134,80 +150,70 @@ export interface ConfigModel extends Model {
   readonly seo: Maybe<SeoModel>;
 }
 
-// export interface ContactBlockModel extends Model {
-//   readonly title?: string;
-//   readonly phoneNumber?: string;
-//   readonly phoneAltText?: string;
-//   readonly email?: string;
-//   readonly emailAltText?: string;
-//   readonly address?: string;
-//   readonly addressAltText?: string;
-// }
+export interface ContactSection extends SectionModel {
+  readonly colors: string;
+  readonly backgroundSize: string;
+  readonly title?: string;
+  readonly text?: string;
+  readonly form?: FormBlockModel;
+  readonly media?: ImageBlockModel | VideoBlockModel;
+}
 
-// export interface ContactSection extends SectionModel {
-//   readonly colors: string;
-//   readonly backgroundSize: string;
-//   readonly title?: string;
-//   readonly text?: string;
-//   readonly form?: FormBlockModel;
-//   readonly media?: ImageBlockModel | VideoBlockModel;
-// }
+export interface CtaSection extends SectionModel {
+  readonly colors: string;
+  readonly backgroundSize: string;
+  readonly title?: string;
+  readonly text?: string;
+  readonly actions: Array<ActionModel | LinkModel>;
+  readonly backgroundImage?: ImageBlockModel;
+}
 
-// export interface CtaSection extends SectionModel {
-//   readonly colors: string;
-//   readonly backgroundSize: string;
-//   readonly title?: string;
-//   readonly text?: string;
-//   readonly actions: Array<ActionModel | LinkModel>;
-//   readonly backgroundImage?: ImageBlockModel;
-// }
+export interface EmailFormControlModel extends ContentModel {
+  readonly name?: string;
+  readonly label?: string;
+  readonly hideLabel?: boolean;
+  readonly placeholder?: string;
+  readonly isRequired?: boolean;
+  readonly width: string;
+}
 
-// export interface EmailFormControlModel extends ContentModel {
-//   readonly name?: string;
-//   readonly label?: string;
-//   readonly hideLabel?: boolean;
-//   readonly placeholder?: string;
-//   readonly isRequired?: boolean;
-//   readonly width: string;
-// }
+export interface FeatureHighlightSection extends SectionModel {
+  readonly colors: string;
+  readonly backgroundSize: string;
+  readonly title?: string;
+  readonly subtitle?: string;
+  readonly badge?: BadgeModel;
+  readonly text?: string;
+  readonly actions: Array<ActionModel | LinkModel>;
+  readonly media?: ImageBlockModel | VideoBlockModel;
+}
 
-// export interface FeatureHighlightSection extends SectionModel {
-//   readonly colors: string;
-//   readonly backgroundSize: string;
-//   readonly title?: string;
-//   readonly subtitle?: string;
-//   readonly badge?: BadgeModel;
-//   readonly text?: string;
-//   readonly actions: Array<ActionModel | LinkModel>;
-//   readonly media?: ImageBlockModel | VideoBlockModel;
-// }
+export interface FeaturedItemModel extends ContentModel {
+  readonly elementId?: string;
+  readonly title?: string;
+  readonly subtitle?: string;
+  readonly text?: string;
+  readonly featuredImage?: ImageBlockModel;
+  readonly actions: Array<ActionModel | LinkModel>;
+}
 
-// export interface FeaturedItemModel extends ContentModel {
-//   readonly elementId?: string;
-//   readonly title?: string;
-//   readonly subtitle?: string;
-//   readonly text?: string;
-//   readonly featuredImage?: ImageBlockModel;
-//   readonly actions: Array<ActionModel | LinkModel>;
-// }
+export interface FeaturedItemsSection extends SectionModel {
+  readonly title?: string;
+  readonly subtitle?: string;
+  readonly items: Array<FeaturedItemModel>;
+  readonly actions: Array<ActionModel | LinkModel>;
+  readonly columns?: number;
+  readonly enableHover?: boolean;
+}
 
-// export interface FeaturedItemsSection extends SectionModel {
-//   readonly title?: string;
-//   readonly subtitle?: string;
-//   readonly items: Array<FeaturedItemModel>;
-//   readonly actions: Array<ActionModel | LinkModel>;
-//   readonly columns?: number;
-//   readonly enableHover?: boolean;
-// }
-
-// export interface FeaturedPeopleSection extends SectionModel {
-//   readonly variant: string;
-//   readonly colors: string;
-//   readonly title?: string;
-//   readonly subtitle?: string;
-//   readonly actions: Array<ActionModel | LinkModel>;
-//   readonly people: Array<PersonModel>;
-// }
+export interface FeaturedPeopleSection extends SectionModel {
+  readonly variant: string;
+  readonly colors: string;
+  readonly title?: string;
+  readonly subtitle?: string;
+  readonly actions: Array<ActionModel | LinkModel>;
+  readonly people: Array<PersonModel>;
+}
 
 export interface FeaturedPostsSectionModel extends PostFeedSectionModel {
   readonly title?: string;
@@ -220,20 +226,20 @@ export interface FooterModel extends ContentModel {
   readonly legalLinks: Array<ActionModel | LinkModel>;
 }
 
-// export interface FormBlockModel extends ContentModel {
-//   readonly variant: string;
-//   readonly fields: Array<
-//     | TextFormControlModel
-//     | EmailFormControlModel
-//     | TextareaFormControlModel
-//     | CheckboxFormControlModel
-//     | SelectFormControlModel
-//   >;
-//   readonly submitLabel?: string;
-//   readonly elementId: string;
-//   readonly action?: string;
-//   readonly destination?: string;
-// }
+export interface FormBlockModel extends ContentModel {
+  readonly variant: string;
+  readonly fields: Array<
+    | TextFormControlModel
+    | EmailFormControlModel
+    | TextareaFormControlModel
+    | CheckboxFormControlModel
+    | SelectFormControlModel
+  >;
+  readonly submitLabel?: string;
+  readonly elementId: string;
+  readonly action?: string;
+  readonly destination?: string;
+}
 
 export interface HeaderModel extends ContentModel {
   readonly logo?: MediaModel;
@@ -250,7 +256,7 @@ export interface HeroSectionModel extends SectionModel {
   readonly media?: ImageBlockModel | VideoBlockModel;
 }
 
-export interface ImageBlockModel extends BlockModel {
+export interface ImageBlockModel extends ContentModel {
   readonly caption?: string;
   readonly media: MediaModel;
 }
@@ -261,24 +267,17 @@ export interface LinkModel extends ContentModel {
   readonly url: string;
 }
 
-export interface MediaModel extends Model {
-  readonly alt?: string;
-  readonly src: string;
-  readonly width: number;
-  readonly height: number;
+export interface MediaGallerySection extends SectionModel {
+  readonly title?: string;
+  readonly subtitle?: string;
+  readonly images: Array<ImageBlockModel>;
+  readonly spacing?: number;
+  readonly columns?: number;
+  readonly aspectRatio: string;
+  readonly imageSizePx?: number;
+  readonly showCaption?: boolean;
+  readonly enableHover?: boolean;
 }
-
-// export interface MediaGallerySection extends SectionModel {
-//   readonly title?: string;
-//   readonly subtitle?: string;
-//   readonly images: Array<ImageBlockModel>;
-//   readonly spacing?: number;
-//   readonly columns?: number;
-//   readonly aspectRatio: string;
-//   readonly imageSizePx?: number;
-//   readonly showCaption?: boolean;
-//   readonly enableHover?: boolean;
-// }
 
 export interface MetaTagModel extends Model {
   readonly property: string;
@@ -315,12 +314,6 @@ export interface PersonModel extends Model {
 
 export type PaginatedPersonModel = PaginatedPostFeed;
 
-export interface CategoryModel extends Model {
-  readonly name: string;
-  readonly slug: string;
-  readonly description?: string;
-}
-
 export interface PostFeedLayoutModel extends PageModel {
   readonly numOfPostsPerPage?: number;
   readonly postFeed?: PostFeedSectionModel;
@@ -345,120 +338,77 @@ export interface DocumentLayoutModel extends PageModel {
   readonly author: PersonModel;
 }
 
-// export interface ProjectListModel extends ContentModel {
-//   readonly title?: string;
-//   readonly items: Array<ProjectListItemModel>;
-// }
-
-// export interface ProjectListItemModel extends ContentModel {
-//   readonly title?: string;
-//   readonly location?: string;
-//   readonly text?: string;
-//   readonly actions: Array<ActionModel | LinkModel>;
-// }
-
-// export interface ProjectsSection extends SectionModel {
-//   readonly title?: string;
-//   readonly subtitle?: string;
-//   readonly projectLists: Array<ProjectListModel>;
-// }
-
-// export interface QuoteSection extends SectionModel {
-//   readonly quote: string;
-//   readonly name?: string;
-//   readonly title?: string;
-//   readonly backgroundImage?: ImageBlockModel;
-// }
+export interface QuoteSection extends SectionModel {
+  readonly quote: string;
+  readonly name?: string;
+  readonly title?: string;
+  readonly backgroundImage?: ImageBlockModel;
+}
 
 export interface RecentPostsSection extends PostFeedSectionModel {
   readonly recentCount?: number;
 }
 
-// export interface SelectFormControlModel extends ContentModel {
-//   readonly name: string;
-//   readonly label?: string;
-//   readonly hideLabel?: boolean;
-//   readonly defaultValue?: string;
-//   readonly options: string;
-//   readonly isRequired?: boolean;
-//   readonly width: string;
-// }
+export interface SelectFormControlModel extends ContentModel {
+  readonly name: string;
+  readonly label?: string;
+  readonly hideLabel?: boolean;
+  readonly defaultValue?: string;
+  readonly options: string;
+  readonly isRequired?: boolean;
+  readonly width: string;
+}
 
-// export interface SupportSection extends SectionModel {
-//   readonly content?: string;
-//   readonly actions: Array<ActionModel | LinkModel>;
-//   readonly items: Array<SupportItemModel>;
-// }
+export interface FaqSection extends SectionModel {
+  readonly content?: string;
+  readonly actions: Array<ActionModel | LinkModel>;
+  readonly items: Array<FaqItemModel>;
+}
 
-// export interface SupportItemModel extends ContentModel {
-//   readonly question: string;
-//   readonly answer: string;
-// }
+export interface FaqItemModel extends ContentModel {
+  readonly question: string;
+  readonly answer: string;
+}
 
-// export interface TestimonialModel extends ContentModel {
-//   readonly quote: string;
-//   readonly name?: string;
-//   readonly title?: string;
-//   readonly image?: ImageBlockModel;
-// }
+export interface TestimonialModel extends ContentModel {
+  readonly quote: string;
+  readonly name?: string;
+  readonly title?: string;
+  readonly image?: ImageBlockModel;
+}
 
-// export interface TestimonialsSection extends SectionModel {
-//   readonly colors: string;
-//   readonly variant: string;
-//   readonly title?: string;
-//   readonly subtitle?: string;
-//   readonly testimonials: Array<TestimonialModel>;
-// }
+export interface TestimonialsSection extends SectionModel {
+  readonly colors: string;
+  readonly variant: string;
+  readonly title?: string;
+  readonly subtitle?: string;
+  readonly testimonials: Array<TestimonialModel>;
+}
 
-// export interface TextFormControlModel extends ContentModel {
-//   readonly name: string;
-//   readonly label?: string;
-//   readonly hideLabel?: boolean;
-//   readonly placeholder?: string;
-//   readonly isRequired?: boolean;
-//   readonly width: string;
-// }
+export interface TextFormControlModel extends ContentModel {
+  readonly name: string;
+  readonly label?: string;
+  readonly hideLabel?: boolean;
+  readonly placeholder?: string;
+  readonly isRequired?: boolean;
+  readonly width: string;
+}
 
-export interface TextBlockModel extends BlockModel {
+export interface TextBlockModel extends ContentModel {
   readonly colors: string;
   readonly content?: string;
 }
 
-// export interface TextareaFormControlModel extends ContentModel {
-//   readonly name: string;
-//   readonly label?: string;
-//   readonly hideLabel?: boolean;
-//   readonly placeholder?: string;
-//   readonly isRequired?: boolean;
-//   readonly width: string;
-// }
+export interface TextareaFormControlModel extends ContentModel {
+  readonly name: string;
+  readonly label?: string;
+  readonly hideLabel?: boolean;
+  readonly placeholder?: string;
+  readonly isRequired?: boolean;
+  readonly width: string;
+}
 
-// export interface ThemeStyleModel extends ContentModel {
-//   readonly fontHeadlines: string;
-//   readonly h1?: Record<string, any>;
-//   readonly h2?: Record<string, any>;
-//   readonly h3?: Record<string, any>;
-//   readonly h4?: Record<string, any>;
-//   readonly h5?: Record<string, any>;
-//   readonly h6?: Record<string, any>;
-//   readonly fontBody: string;
-//   readonly main?: string;
-//   readonly light?: string;
-//   readonly onLight?: string;
-//   readonly dark?: string;
-//   readonly onDark?: string;
-//   readonly primary?: string;
-//   readonly onPrimary?: string;
-//   readonly secondary?: string;
-//   readonly onSecondary?: string;
-//   readonly complementary?: string;
-//   readonly onComplementary?: string;
-//   readonly buttonPrimary?: Record<string, any>;
-//   readonly buttonSecondary?: Record<string, any>;
-//   readonly link?: Record<string, any>;
-// }
-
-export interface VideoBlockModel extends BlockModel {
+export interface VideoBlockModel extends ContentModel {
   readonly title?: string;
   readonly url: string;
   readonly autoplay?: boolean;
