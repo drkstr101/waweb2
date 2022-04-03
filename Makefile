@@ -24,13 +24,13 @@ analyze:
 # Install a few libs into node modules so the can be found
 # using standard nodejs require
 setup: install
-# $(MAKE) setup-utils
+	$(MAKE) setup-utils
 
 setup-utils:
 	nx build api-stackbit
-	rm -rf node_modules/@watheia
-	mkdir node_modules/@watheia
-	cp -r dist/libs/api/stackbit node_modules/@watheia/api.stackbit
+	rm -rf node_modules/@watheia/api.stackbit
+	mkdir -p node_modules/@watheia/api.stackbit
+	cp -r dist/libs/api/stackbit/* node_modules/@watheia/api.stackbit/.
 	echo '{}' > .sourcebit-nextjs-cache.json
 
 install:
