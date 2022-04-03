@@ -23,8 +23,8 @@ export default function ViewSource({ repo }: ViewSourceProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="64"
-      height="64"
+      width="72"
+      height="72"
       viewBox="0 0 250 250"
       fill="#151513"
       className={styles['svg']}

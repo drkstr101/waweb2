@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-@tailwind components;
-@tailwind base;
-@tailwind utilities;
-
 :root {
   --space: 4px;
   --space-2x: 8px;
@@ -56,9 +52,11 @@
   --gray: #252729;
   --secondary-color: #8a8f98;
   --sidebar: #0e0e10;
-  --header-height: 64px;
+  --header-height: 72px;
   --brand: #0596a6;
   --success: #0070f3;
+
+  --100vh: calc(100vh - 72px);
 }
 
 html {

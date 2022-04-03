@@ -1,5 +1,8 @@
-@import './nprogress.css';
-@import './chrome-bug.css';
-@import './typography.css';
-@import './authcontainer.css';
-@import './global.css';
+@import url('./global.css');
+@import url('./components.css');
+@import url('./base.css');
+@import url('./utilities.css');
+@import url('./nprogress.css');
+@import url('./chrome-bug.css');
+@import url('./typography.css');
+@import url('./authcontainer.css');
