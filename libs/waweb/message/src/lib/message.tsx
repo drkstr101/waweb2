@@ -1,4 +1,4 @@
-import { AlertDialog, DialogContainer } from '@react-spectrum/dialog';
+import { AlertDialog, DialogContainer } from '@adobe/react-spectrum';
 import { FunctionComponent, useState } from 'react';
 
 export type MessageType = 'confirmation' | 'information' | 'destructive' | 'error' | 'warning';

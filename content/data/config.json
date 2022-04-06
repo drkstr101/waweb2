@@ -7,14 +7,12 @@
       {
         "type": "Link",
         "label": "Blog",
-        "url": "/blog",
-        "altText": ""
+        "url": "/blog"
       },
       {
         "type": "Link",
         "label": "Expo",
-        "url": "/expo",
-        "altText": ""
+        "url": "/expo"
       },
       {
         "type": "Link",

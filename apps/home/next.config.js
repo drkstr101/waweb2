@@ -1,6 +1,6 @@
 const analyzer = require('@next/bundle-analyzer');
 const withNx = require('@nrwl/next/plugins/with-nx');
-const withPreact = require('next-plugin-preact');
+// const withPreact = require('next-plugin-preact');
 const withPWA = require('next-pwa');
 const transpiler = require('next-transpile-modules');
 const sourcebit = require('sourcebit');
@@ -93,4 +93,4 @@ const nextConfig = {
 // note: withTM didn't seem to work with `next-compose-plugins`,
 //       so we must compose them manually here using withTM as
 //       the outermost call
-module.exports = withTM(withNx(withBundleAnalyzer(withPreact(withPWA(nextConfig)))));
+module.exports = withTM(withNx(withBundleAnalyzer(withPWA(nextConfig))));

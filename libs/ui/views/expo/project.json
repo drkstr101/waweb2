@@ -1,0 +1,43 @@
+{
+  "root": "libs/ui/views/expo",
+  "sourceRoot": "libs/ui/views/expo/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui/views/expo",
+        "tsConfig": "libs/ui/views/expo/tsconfig.lib.json",
+        "project": "libs/ui/views/expo/package.json",
+        "entryFile": "libs/ui/views/expo/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/ui/views/expo/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/ui/views/expo/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ui/views/expo"],
+      "options": {
+        "jestConfig": "libs/ui/views/expo/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

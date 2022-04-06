@@ -1,4 +1,5 @@
-import { ConfigModel, Maybe } from '@watheia/model';
 import { createContext } from 'react';
+import config from './config.json';
 
-export const ConfigContext = createContext<Maybe<ConfigModel>>(null);
+export type Config = typeof config;
+export const ConfigContext = createContext<Config>(config);

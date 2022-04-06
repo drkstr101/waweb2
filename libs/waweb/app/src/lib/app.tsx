@@ -1,6 +1,4 @@
-import { SSRProvider } from '@react-aria/ssr';
-import { Provider } from '@react-spectrum/provider';
-import { theme } from '@react-spectrum/theme-default';
+import { defaultTheme, Provider, SSRProvider } from '@adobe/react-spectrum';
 import { AuthProvider } from '@watheia/waweb.auth';
 import { MessageProvider } from '@watheia/waweb.message';
 import { AppProps } from 'next/app';
@@ -19,7 +17,7 @@ function WaNextApp({ Component, pageProps }: AppProps) {
     <SSRProvider>
       <MessageProvider>
         <AuthProvider>
-          <Provider theme={theme} colorScheme={colorScheme} minHeight="100%">
+          <Provider theme={defaultTheme} colorScheme={colorScheme} minHeight="100%">
             <Component {...pageProps} />
           </Provider>
         </AuthProvider>

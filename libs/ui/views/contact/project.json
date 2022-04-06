@@ -1,0 +1,43 @@
+{
+  "root": "libs/ui/views/contact",
+  "sourceRoot": "libs/ui/views/contact/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui/views/contact",
+        "tsConfig": "libs/ui/views/contact/tsconfig.lib.json",
+        "project": "libs/ui/views/contact/package.json",
+        "entryFile": "libs/ui/views/contact/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/ui/views/contact/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/ui/views/contact/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ui/views/contact"],
+      "options": {
+        "jestConfig": "libs/ui/views/contact/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

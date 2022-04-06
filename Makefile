@@ -1,4 +1,5 @@
-.PHONY: setup clean format lint test build start ci dato-export docs
+.PHONY: setup clean format format validate
+	stackbit validatetest build start ci dato-export docs
 
 SHELL := /bin/bash
 PATH := ./node_modules/.bin:$(HOME)/bin:$(PATH)
@@ -6,8 +7,7 @@ MAKE := make
 
 ci:
 	$(MAKE) setup
-	$(MAKE) format
-	$(MAKE) lint
+	$(MAKE) validate
 	$(MAKE) test
 	$(MAKE) build
 
@@ -24,10 +24,10 @@ setup: install
 	$(MAKE) setup-utils
 
 setup-utils:
-	nx build api-stackbit
-	rm -rf node_modules/@watheia/api.stackbit
-	mkdir -p node_modules/@watheia/api.stackbit
-	cp -r dist/libs/api/stackbit/* node_modules/@watheia/api.stackbit/.
+# nx build api-stackbit
+# rm -rf node_modules/@watheia/api.stackbit
+# mkdir -p node_modules/@watheia/api.stackbit
+# cp -r dist/libs/api/stackbit/* node_modules/@watheia/api.stackbit/.
 	echo '{}' > .sourcebit-nextjs-cache.json
 
 install:
@@ -36,7 +36,8 @@ install:
 format:
 	nx format
 
-lint:
+validate: format
+	stackbit validate
 	nx run-many --all --target lint
 
 test: setup-utils

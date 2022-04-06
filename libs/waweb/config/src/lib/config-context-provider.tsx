@@ -1,12 +1,12 @@
-import { ConfigModel } from '@watheia/model';
 import React, { ReactNode } from 'react';
-import { ConfigContext } from './config-context';
+import { Config, ConfigContext } from './config-context';
+import useConfig from './use-config';
 
 export type ConfigProviderProps = {
   /**
    * The global config context to inject
    */
-  config: ConfigModel;
+  config: Partial<Config>;
 
   /**
    * children to be rendered within this theme.
@@ -15,5 +15,7 @@ export type ConfigProviderProps = {
 };
 
 export function ConfigProvider({ config, children }: ConfigProviderProps) {
-  return <ConfigContext.Provider value={config}>{children}</ConfigContext.Provider>;
+  const original = useConfig();
+  const value = { ...original, ...config } as Config;
+  return <ConfigContext.Provider value={value}>{children}</ConfigContext.Provider>;
 }
