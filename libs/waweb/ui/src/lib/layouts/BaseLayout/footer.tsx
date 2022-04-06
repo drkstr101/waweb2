@@ -14,44 +14,39 @@
  * limitations under the License.
  */
 
+import { ConfigModel } from '@watheia/model';
 import cn from 'clsx';
 import Link from 'next/link';
 import styles from './footer.module.css';
 
-export default function Footer() {
+export default function Footer({ config }: { config: ConfigModel }) {
   return (
-    <footer
-      className={cn(styles['footer'], 'border-t border-dotted border-secondary bg-base-700')}
-      data-testid="waweb.layout/footer"
-    >
-      <div className={styles['footer-legal']}>
-        <div data-testid="waweb.layout/footer:copyright" className={styles['footer-copyright']}>
-          Copyright © {`${new Date().getFullYear()} `}
-          <br />
-          Watheia Labs, LLC.
-          <br />
-          All rights reserved.
-        </div>
-        <div className={styles['footer-center-group']}>
-          <p className={styles['footer-paragraph']}>
-            <a
-              data-testid="waweb.layout/footer:view-source"
-              href="https://gitlab.com/watheia/waweb"
-              className={styles['footer-link']}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source
-            </a>
-          </p>
-          <div className={styles['footer-separator']} />
-          <p className={styles['footer-paragraph']}>
-            <Link href="/terms-and-conditions">
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a className={styles['footer-link']}>Terms</a>
-            </Link>
-          </p>
-        </div>
+    <footer className={cn(styles['footer'], 'border-t border-dotted border-secondary')}>
+      <div className={styles['footer-copyright']}>
+        Copyright © {`${new Date().getFullYear()} `}
+        <br />
+        Watheia Labs, LLC.
+        <br />
+        All rights reserved.
+      </div>
+      <div className={styles['footer-center-group']}>
+        <p className={styles['footer-paragraph']}>
+          <a
+            href={config.repo}
+            className={styles['footer-link']}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Source
+          </a>
+        </p>
+        <div className={styles['footer-separator']} />
+        <p className={styles['footer-paragraph']}>
+          <Link href="/terms-and-conditions">
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a className={styles['footer-link']}>Terms</a>
+          </Link>
+        </p>
       </div>
     </footer>
   );

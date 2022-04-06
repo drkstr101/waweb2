@@ -34,5 +34,6 @@
     "watheia",
     "waweb"
   ],
-  "svg.preview.background": "white"
+  "svg.preview.background": "white",
+  "jest.jestCommandLine": "yarn jest"
 }

@@ -31,13 +31,13 @@
   margin: var(--space-2x, 8px) var(--space-4x, 16px);
 }
 
-.mobile-nav-btn {
+.ActionButton {
   margin-right: var(--space-4x);
   cursor: pointer;
 }
 
 @media (min-width: 780px) {
-  .mobile-nav-btn {
+  .ActionButton {
     display: none;
   }
 }
@@ -65,7 +65,7 @@
 
 .mobile-nav-active {
   color: #fff;
-  background: linear-gradient(90deg, var(--brand), var(--brand)) left bottom transparent
+  background: linear-gradient(90deg, var(--accent), var(--accent)) left bottom transparent
     no-repeat;
   background-size: 100% 2px;
 }
@@ -110,7 +110,7 @@
   text-transform: uppercase;
   padding: var(--space-4x);
   font-size: 14px;
-  color: var(--secondary-color);
+  color: var(--secondary);
   font-weight: 700;
   letter-spacing: -0.05em;
   height: 100%;
@@ -127,7 +127,7 @@
 
 .tabActive {
   color: #fff;
-  background: linear-gradient(90deg, var(--brand), var(--brand)) left bottom transparent
+  background: linear-gradient(90deg, var(--accent), var(--accent)) left bottom transparent
     no-repeat;
   background-size: 100% 1px;
 }

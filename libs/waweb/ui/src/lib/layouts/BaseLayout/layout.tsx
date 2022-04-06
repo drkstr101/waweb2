@@ -75,7 +75,7 @@ export default function BaseLayout({ page, site, children }: BaseLayoutProps) {
                   <ConfigProvider config={site}>{children}</ConfigProvider>
                 </div>
               </div>
-              <Footer />
+              <Footer config={site} />
             </div>
           </div>
         </div>

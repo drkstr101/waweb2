@@ -14,16 +14,7 @@
  * limitations under the License.
  */
 
-import {
-  ActionButton,
-  Content,
-  Dialog,
-  DialogTrigger,
-  Divider,
-  Heading
-} from '@adobe/react-spectrum';
 import { BellIcon } from '@heroicons/react/outline';
-import ShowMenu from '@spectrum-icons/workflow/ShowMenu';
 import { Link } from '@watheia/base-ui';
 import { HeaderModel } from '@watheia/model';
 import { useAuth } from '@watheia/waweb.auth';
@@ -32,6 +23,7 @@ import { useRouter } from 'next/router';
 import { HtmlHTMLAttributes } from 'react';
 import styles from './header.module.css';
 import Logo from './logo';
+import MobileNav from './mobile-nav';
 import UserMenu from './user-menu';
 
 export interface HeaderProps extends HtmlHTMLAttributes<HTMLDivElement> {
@@ -46,7 +38,7 @@ export default function Header({ className, model, ...props }: HeaderProps) {
   return (
     <header className={cn(styles['header'], className)}>
       <div className={styles['headerLogos']}>
-        <div className={styles['mobile-nav-btn']}>
+        <div className={styles['ActionButton']}>
           <MobileNav key={activeRoute} {...model} />
         </div>
         <Link href="/" className={styles['logo']}>
@@ -70,7 +62,7 @@ export default function Header({ className, model, ...props }: HeaderProps) {
         <div className="flex items-center ml-4 mr-16 md:ml-6">
           <button
             type="button"
-            className="p-1 text-base-300 bg-base-content rounded-full hover:text-base-700 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+            className="p-1 rounded-full text-base-300 bg-base-content hover:text-base-700 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
           >
             <span className="sr-only">View notifications</span>
             <BellIcon className="w-6 h-6" aria-hidden="true" />
@@ -82,37 +74,3 @@ export default function Header({ className, model, ...props }: HeaderProps) {
     </header>
   );
 }
-
-const MobileNav = ({ primaryLinks }: HeaderModel) => {
-  const router = useRouter();
-  const activeRoute = router?.asPath ?? '/';
-  return (
-    <DialogTrigger type="tray">
-      <ActionButton aria-label="Navigator" UNSAFE_style={{ cursor: 'pointer' }}>
-        <ShowMenu />
-      </ActionButton>
-      {(close) => (
-        <Dialog>
-          <Heading>Navigator</Heading>
-          <Divider />
-          <Content>
-            <nav className={styles['mobile-nav']}>
-              {primaryLinks.map(({ label, url }) => (
-                <Link
-                  key={label}
-                  href={url}
-                  onClick={close}
-                  className={cn(styles['mobile-nav-item'], {
-                    [styles['mobile-nav-active']]: activeRoute.startsWith(url)
-                  })}
-                >
-                  {label}
-                </Link>
-              ))}
-            </nav>
-          </Content>
-        </Dialog>
-      )}
-    </DialogTrigger>
-  );
-};

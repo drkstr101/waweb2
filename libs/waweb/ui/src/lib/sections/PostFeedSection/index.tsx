@@ -22,7 +22,6 @@ export default function PostFeedSection(props: PostFeedSectionModel) {
       id={cssId}
       {...getDataAttrs(props)}
       className={classNames(
-        'wa-post-feed-section',
         'flex flex-col justify-center relative',
         mapMinHeightStyles(height),
         styles.margin,
@@ -136,10 +135,10 @@ function postsVariantA(props: PostFeedSectionModel) {
             data-sb-object-id={post.__metadata?.id}
           >
             {post.featuredImage && (
-              <div className="rounded-2xl mb-6 h-0 w-full pt-1/1 relative overflow-hidden lg:mb-10">
+              <div className="relative w-full h-0 mb-6 overflow-hidden rounded-2xl pt-1/1 lg:mb-10">
                 <ImageBlock
                   {...post.featuredImage}
-                  className="absolute left-0 top-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="absolute top-0 left-0 object-cover w-full h-full transition-transform duration-500 hover:scale-105"
                   data-sb-field-path="featuredImage"
                 />
               </div>
@@ -193,12 +192,12 @@ function postsVariantB(props: PostFeedSectionModel) {
           >
             {post.featuredImage && (
               <div
-                className="rounded-2xl mb-6 h-0 w-full pt-9/16 relative overflow-hidden md:pt-0 md:h-64 lg:h-96 lg:mb-10"
+                className="relative w-full h-0 mb-6 overflow-hidden rounded-2xl pt-9/16 md:pt-0 md:h-64 lg:h-96 lg:mb-10"
                 data-sb-field-path="featuredImage"
               >
                 <ImageBlock
                   {...post.featuredImage}
-                  className="absolute left-0 top-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="absolute top-0 left-0 object-cover w-full h-full transition-transform duration-500 hover:scale-105"
                 />
               </div>
             )}
@@ -239,7 +238,7 @@ function postsVariantC(props: PostFeedSectionModel) {
     >
       {posts.map((post, index) => {
         return (
-          <article key={index} className="sb-card rounded-2xl overflow-hidden">
+          <article key={index} className="overflow-hidden sb-card rounded-2xl">
             <Link
               href={getPageUrlPath(post)}
               className="block"
@@ -248,12 +247,12 @@ function postsVariantC(props: PostFeedSectionModel) {
               <div className="flex flex-col min-h-full">
                 {post.featuredImage && (
                   <div
-                    className="h-0 w-full pt-9/16 relative overflow-hidden"
+                    className="relative w-full h-0 overflow-hidden pt-9/16"
                     data-sb-field-path="featuredImage"
                   >
                     <ImageBlock
                       {...post.featuredImage}
-                      className="absolute left-0 top-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                      className="absolute top-0 left-0 object-cover w-full h-full transition-transform duration-500 hover:scale-105"
                     />
                   </div>
                 )}
@@ -277,7 +276,7 @@ function postsVariantC(props: PostFeedSectionModel) {
                   <div className="mt-3">
                     <div className="sb-component sb-component-block sb-component-link">
                       <span>Read post</span>
-                      <ArrowRightIcon className="fill-current h-5 w-5 ml-3" />
+                      <ArrowRightIcon className="w-5 h-5 ml-3 fill-current" />
                     </div>
                   </div>
                 </div>

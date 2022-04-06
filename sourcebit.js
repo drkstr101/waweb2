@@ -78,14 +78,15 @@ module.exports = {
           );
           const personPages = personObjects.map(matchPages((it) => `/blog/author/${it.slug}`));
 
-          const categoryObjects = objects.filter(
-            (object) =>
-              object.__metadata.relProjectPath?.startsWith('content/data/category/') &&
-              !!object.slug
-          );
-          const categoryPages = categoryObjects.map(
-            matchPages((it) => `/blog/category/${it.slug}`)
-          );
+          const categoryPages = [];
+          // const categoryObjects = objects.filter(
+          //   (object) =>
+          //     object.__metadata.relProjectPath?.startsWith('content/data/category/') &&
+          //     !!object.slug
+          // );
+          // const categoryPages = categoryObjects.map(
+          //   matchPages((it) => `/blog/category/${it.slug}`)
+          // );
 
           const pageObjects = objects.filter((page) => page.__metadata.sourceName === 'pages');
           const pages = pageObjects.map((page) => {

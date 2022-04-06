@@ -10,6 +10,7 @@ function WaNextApp({ Component, pageProps }: AppProps) {
   // keep color scheme in sync with tailwindcss
   const [colorScheme, setColorScheme] = useState<'light' | 'dark'>('dark');
   useEffect(() => {
+    window.document.body.classList?.remove('loading');
     setColorScheme(
       window.document.body.getAttribute('data-theme') === 'light' ? 'light' : 'dark'
     );

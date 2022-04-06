@@ -41,20 +41,29 @@
   --accents-7: #333333;
   --accents-8: #111111;
 
+  --primary: #1c4f82;
+
+  --primary-content: #b8dbff;
+
+  --secondary: #7D919B;
+
+  --secondary-content: #002538;
+
+  --neutral: #23282F;
+  --neutral-700: #46505e;
+  --neutral-300: #0b0d0f;
+
+  --neutral-content: #C8D2E0;
+
+  --accent: #04BFBF
+
+  --accent-content: #253E59;
+
+  --base: #212121;
   --base-300: #121212;
-  --base-500: #212121;
   --base-700: #353535;
 
-  --neutral-300: #0b0d0f;
-  --neutral-500: #23282f;
-  --neutral-700: #46505e;
-
-  --gray: #252729;
-  --secondary-color: #8a8f98;
-  --sidebar: #0e0e10;
   --header-height: 72px;
-  --brand: #0596a6;
-  --success: #0070f3;
 
   --100vh: calc(100vh - 72px);
 }

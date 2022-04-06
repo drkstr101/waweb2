@@ -3,9 +3,6 @@
 SHELL := /bin/bash
 PATH := ./node_modules/.bin:$(HOME)/bin:$(PATH)
 MAKE := make
-# DATO_API_TOKEN := ${DATO_API_TOKEN}
-# WA_HOME_URL := ${WA_HOME_URL}
-# WA_EXPO_URL := ${WA_EXPO_URL}
 
 ci:
 	$(MAKE) setup
@@ -48,19 +45,11 @@ test: setup-utils
 build: build-home setup-utils
 
 build-home: setup-utils
-	WA_HOME_URL=$(WA_HOME_URL) \
-		WA_EXPO_URL=$(WA_EXPO_URL) \
-		nx build home --prod --verbose --skip-nx-cache
-
-# build-expo: setup-utils
-#		WA_HOME_URL=$(WA_HOME_URL) \
-			WA_EXPO_URL=$(WA_EXPO_URL) \
-			nx build expo --prod --verbose
+	nx build home --prod --verbose --skip-nx-cache
 
 # Run all in parallel
 start: setup-utils
-	WA_HOME_URL=$(WA_HOME_URL) \
-		nx run-many --all --target serve --parallel
+	nx run-many --all --target serve --parallel
 
 docs:
 	depcruise . \

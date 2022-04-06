@@ -5,12 +5,11 @@ import {
   User as Principal,
   UserCredentials
 } from '@supabase/supabase-js';
-import { url } from '@watheia/utils';
 import { useMessage } from '@watheia/waweb.message';
 import { FunctionComponent, useEffect, useState } from 'react';
 import { AuthContext, supabase } from './auth-context';
 
-const sessionApiUrl = url('/api/session').href;
+const sessionApiUrl = '/api/session';
 
 const setServerSession = async (event: AuthChangeEvent, session: Session | null) => {
   await fetch(sessionApiUrl, {
