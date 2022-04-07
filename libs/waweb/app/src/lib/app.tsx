@@ -3,6 +3,8 @@ import { AuthProvider } from '@watheia/waweb.auth';
 import { MessageProvider } from '@watheia/waweb.message';
 import { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
+// import NProgress from './nprogress';
+import ResizeHandler from './resize-handler';
 
 function WaNextApp({ Component, pageProps }: AppProps) {
   // keep color scheme in sync with tailwindcss
@@ -19,6 +21,8 @@ function WaNextApp({ Component, pageProps }: AppProps) {
         <AuthProvider>
           <Provider theme={defaultTheme} colorScheme={colorScheme} minHeight="100%">
             <Component {...pageProps} />
+            {/* <NProgress /> */}
+            <ResizeHandler />
           </Provider>
         </AuthProvider>
       </MessageProvider>

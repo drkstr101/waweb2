@@ -7,8 +7,6 @@ import { BaseLayoutProps, LayoutOptions } from './BaseLayoutProps';
 import Footer from './footer';
 import Header from './header';
 import styles from './layout.module.css';
-import NProgress from './nprogress';
-import ResizeHandler from './resize-handler';
 import ViewSource from './view-source';
 
 export type { BaseLayoutProps };
@@ -69,8 +67,6 @@ export default function BaseLayout({
           {config.footer && <Footer />}
         </div>
       </div>
-      {/* <NProgress /> */}
-      <ResizeHandler />
     </>
   );
 }

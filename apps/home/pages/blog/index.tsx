@@ -1,5 +1,5 @@
 import { CameraIcon } from '@heroicons/react/solid';
-import { FeaturedPostsSection } from '../index';
+import { FeaturedPostsSection } from '@watheia/ui.views.blog';
 import Layout from '@watheia/ui.layout.base';
 
 /*
