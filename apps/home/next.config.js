@@ -57,9 +57,7 @@ const withTM = transpiler([
   '@spectrum-icons/workflow'
 ]);
 
-// const WA_HOME_URL = process.env['WA_HOME_URL'] ?? 'http://localhost:4200';
-// const WA_EXPO_URL = process.env['WA_EXPO_URL'] ?? 'http://localhost:4210/expo';
-// const WA_CONTACT_URL = process.env['WA_CONTACT_URL'] ?? 'http://localhost:4220/contact';
+const GATEKEEPER_URL = process.env['GATEKEEPER_URL'] ?? 'http://localhost:4200';
 
 /**
  * @type {WithNxOptions}
@@ -78,7 +76,7 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false
   },
-  // env: { WA_HOME_URL, WA_EXPO_URL, WA_CONTACT_URL },
+  env: { GATEKEEPER_URL },
   images: {
     domains: [
       'watheia.io',

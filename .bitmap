@@ -9,11 +9,5 @@
  */
 
 {
-    "config": {
-        "scope": "",
-        "version": "",
-        "mainFile": "index.ts",
-        "rootDir": "libs/waweb/config/src/lib"
-    },
     "$schema-version": "14.9.0"
 }

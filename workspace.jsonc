@@ -1,7 +1,7 @@
 /**
  * this is the main configuration file of your bit workspace.
  * for full documentation, please see: https://bit.dev/docs/workspace/workspace-configuration
- **/ {
+ **/{
   "$schema": "https://static.bit.dev/teambit/schemas/schema.json",
   /**
    * main configuration of the Bit workspace.
@@ -23,7 +23,7 @@
      * scope - scope name only, e.g. 'compilation'.
      * owner - owner name in bit.dev, e.g. 'teambit'.
      **/
-    "defaultDirectory": "{scope}/{name}",
+    "defaultDirectory": "scopes/{scope}/{name}",
     /**
      * default scope for all components in workspace.
      **/
@@ -43,6 +43,14 @@
     }
   },
   /**
+   * Add an aditional bundler for pure html
+   */
+  "teambit.compilation/bundler": {
+    "dedicatedEnvDevServers": [
+      "teambit.html/html"
+    ]
+  },
+  /**
    * workspace variants allow to set different subsets of configuration for components in your
    * workspace. this is extremely useful for upgrading, aligning and building components with a new
    * set of dependencies. a rule can be a directory or a component-id/namespace, in which case,
@@ -54,16 +62,36 @@
      * "*" is a special rule which applied on all components in the workspace.
      **/
     "*": {
-      /**
-       * uncomment to apply the chosen environment on all components.
-       **/
-      // "teambit.react/react": { }
+      "teambit.pkg/pkg": {
+        "packageManagerPublishArgs": [
+          // "--access public"
+        ],
+        "packageJson": {
+          "name": "@watheia/{scope}.{name}",
+          "private": false,
+          "author": {
+            "name": "Aaron R Miller",
+            "email": "amiller@watheia.org"
+          },
+          "repository": {
+            "url": "https://gitlab.com/watheia/waweb",
+            "directory": "scopes/{scope}/{name}"
+          },
+          "homepage": "https://watheia.io",
+          "keywords": [
+            "micro",
+            "microcomponent",
+            "microfrontend",
+            "monorepo",
+            "bit",
+            "harmony"
+          ]
+        },
+        "license": "MIT"
+      }
     },
     "libs/waweb": {
       "defaultScope": "watheia.waweb"
-    },
-    "libs/waweb/config": {
-      "teambit.react/react": {}
     }
   }
 }

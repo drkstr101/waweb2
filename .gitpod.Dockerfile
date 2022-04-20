@@ -14,11 +14,13 @@ RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/inst
 ENV PATH=$HOME/bin:$PATH
 RUN export PATH=$HOME/bin:$PATH && \
   npm i -g @teambit/bvm && \
+  bit config set analytics_reporting false && \
+  bit config set interactive false && \
   bvm install
 
 # Get the public URL from gitpod
-RUN echo 'export WA_HOME_URL="$(/usr/bin/gp url 4200)"' >> ~/.bashrc && \
-  echo 'export WA_HOME_URL="$(/usr/bin/gp url 4200)"' >> ~/.zshrc
+RUN echo 'export GATEKEEPER_URL="$(/usr/bin/gp url 4200)"' >> ~/.bashrc && \
+  echo 'export GATEKEEPER_URL="$(/usr/bin/gp url 4200)"' >> ~/.zshrc
 
 # Install Cypress dependencies
 # TODO noninteractive has no affect

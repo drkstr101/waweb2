@@ -17,7 +17,7 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 function url(path: string) {
-  return `${process.env['WA_HOME_URL'] ?? 'http://localhost:4200'}/${path}`;
+  return path;
 }
 
 export default class WaNextDocument extends Document {
